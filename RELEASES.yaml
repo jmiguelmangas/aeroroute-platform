@@ -1,0 +1,11 @@
+release: 0.0.0-skeleton
+components:
+  contracts: { version: 0.1.0 }
+  optimizer:
+    version: 0.1.0
+    solver: { implementation: layered-label-setting, version: 0.1.0 }
+  api: { version: 0.1.0 }
+  data: { version: 0.1.0 }
+  mlx: { version: 0.1.0, prompt_version: 0.1.0 }
+  mlx_training: { version: 0.1.0, dataset_version: 0.1.0 }
+  web: { version: 0.1.0 }
