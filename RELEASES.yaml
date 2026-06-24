@@ -1,11 +1,28 @@
-release: 0.0.0-skeleton
+release: 0.1.0-local-integration
+release_kind: local-integration
 components:
-  contracts: { version: 0.1.0 }
+  contracts:
+    version: 0.1.0
+    source_commit: 1086016756670d6d268d07649cc7c6f2f17f00d6
   optimizer:
     version: 0.1.0
+    source_commit: 5bc033c6f2809b059fe27e13f617559c5e59e063
     solver: { implementation: layered-label-setting, version: 0.1.0 }
-  api: { version: 0.1.0 }
-  data: { version: 0.1.0 }
-  mlx: { version: 0.1.0, prompt_version: 0.1.0 }
-  mlx_training: { version: 0.1.0, dataset_version: 0.1.0 }
-  web: { version: 0.1.0 }
+  api:
+    version: 0.1.0
+    source_commit: 7079b8436a5427594c1332ab25cf6d4ad25a1e14
+  data:
+    version: 2026.06.1
+    source_commit: 771cb1d756b4921e5c8fdfed8c1122f08c254bcd
+    bundle_sha256: eccef95081c9fcc2d091e51129b84b75b0897e583a7c7e6eebfb5b6d40d007d9
+  mlx:
+    version: 0.1.0
+    source_commit: aa79aa861980d40ffe401f98cdcf17e8ec6a1874
+    prompt_version: 0.1.0
+  mlx_training:
+    version: 0.1.0
+    source_commit: 4563fe6a9577bd671805ce3b366f861586888ad2
+    dataset_version: 1.0.0
+  web:
+    version: 0.1.0
+    source_commit: da10d6256ca19f3f003392272f01322bbff2b50b

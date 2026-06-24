@@ -18,8 +18,15 @@ uv --directory "$data_repo" run aeroroute-data build-airports \
   --output "$bundle_dir" \
   --version 2026.06.1
 uv --directory "$api_repo" run aeroroute import-airports --bundle "$bundle_dir"
-uv --directory "$mlx_repo" run uvicorn aeroroute_mlx.main:app \
-  --host 127.0.0.1 --port "$mlx_port" >/tmp/aeroroute-mlx-integration.log 2>&1 &
+if [ -n "${AEROROUTE_MLX_MODEL_PATH:-}" ] && [ -n "${AEROROUTE_MLX_ADAPTER_PATH:-}" ]; then
+  AEROROUTE_MLX_MODEL_PATH="$AEROROUTE_MLX_MODEL_PATH" \
+    AEROROUTE_MLX_ADAPTER_PATH="$AEROROUTE_MLX_ADAPTER_PATH" \
+    uv --directory "$mlx_repo" run --extra mlx uvicorn aeroroute_mlx.main:app \
+      --host 127.0.0.1 --port "$mlx_port" >/tmp/aeroroute-mlx-integration.log 2>&1 &
+else
+  uv --directory "$mlx_repo" run uvicorn aeroroute_mlx.main:app \
+    --host 127.0.0.1 --port "$mlx_port" >/tmp/aeroroute-mlx-integration.log 2>&1 &
+fi
 mlx_pid=$!
 trap 'kill "$mlx_pid" 2>/dev/null || true' EXIT
 for _ in $(seq 1 20); do
@@ -30,6 +37,7 @@ for _ in $(seq 1 20); do
 done
 curl --fail --silent "http://127.0.0.1:$mlx_port/health" >/dev/null
 MLX_SERVICE_URL="http://127.0.0.1:$mlx_port" uv --directory "$api_repo" run python -c '
+import os
 from fastapi.testclient import TestClient
 from aeroroute_api.main import app
 
@@ -47,6 +55,7 @@ with TestClient(app) as client:
     run_id = result.json()["run_id"]
     explanation = client.get(f"/api/v1/optimizations/{run_id}/explanation")
     assert explanation.status_code == 200, explanation.text
-    assert explanation.json()["provider"] == "template"
+    expected_provider = "mlx" if os.getenv("AEROROUTE_MLX_MODEL_PATH") else "template"
+    assert explanation.json()["provider"] == expected_provider, explanation.text
 print(f"integration_run_id={run_id}")
 '
