@@ -11,16 +11,16 @@ earlier phase.
 
 The product currently has a working Phase 9 user journey over a deterministic
 still-air backend. It is not ready to enter Phase 10 because several earlier
-phase acceptance criteria remain open, chiefly repository governance,
-PostGIS-backed integration coverage, aircraft-adapter scope, weather-aware
-orchestration, and native MLX validation.
+phase acceptance criteria remain open, chiefly external repository governance,
+production mass iteration, weather-aware orchestration, and native MLX
+validation.
 
 | Phase | Status | Implemented evidence | Remaining acceptance work |
 | --- | --- | --- | --- |
 | 0. Governance and skeleton | Partial | Eight repositories, boundaries, READMEs, AGENTS files, lock files, Compose, release manifest and local harness exist. Standard checks, CI workflows, CONTRIBUTING guides, CODEOWNERS and PR templates now exist in every repository. | Select and add the organization license, then verify GitHub branch protection, required checks and tracking issues outside the repositories. |
 | 1. Pure domain foundations | Complete | SI units, WGS84 geodesy, normalization, wind vectors and pure tests live in `aeroroute-optimizer`. | Keep numerical fixtures reviewed when algorithms change. |
 | 2. Database and airport catalogue | Complete | PostGIS schema, Alembic migrations, immutable bundle generation/import, airport search and a real-PostGIS integration test cover upgrade/downgrade, idempotency and spatial coordinate order. | Keep the PostGIS image and migration test aligned with supported release platforms. |
-| 3. Aircraft performance abstraction | Partial | Provider port, curated deterministic performance and still-air segment estimates exist. | Implement or explicitly defer the OpenAP adapter; add fixed climb/descent estimates and adapter provenance/contract tests. |
+| 3. Aircraft performance abstraction | Complete | The provider port supports curated and optional OpenAP 2.5 adapters, explicit package provenance, strict SI conversion, fixed climb/descent estimates and adapter contract tests. Real A320 and B738 OpenAP calls were also verified locally. | Keep OpenAP optional and review its LGPL-3.0 dependency obligations before distribution. |
 | 4. Still-air optimizer and solver | Partial | Bounded lattice, exhaustive oracle, layered label-setting solver, alternatives, budgets, diagnostics and golden fixtures exist. | Integrate the mass/fuel fixed-point loop into the production use case and expose the full objective/cost breakdown required by the HLD. |
 | 5. Weather integration | Partial | Weather port, Open-Meteo client, cache/stale policy, interpolation and provider-neutral wind segment evaluation exist. | The optimization endpoint still calls `optimize_still_air`; connect normalized weather snapshots to problem construction and pass the required metamorphic end-to-end scenarios. |
 | 6. Application use case and API | Partial | Typed request/response, OpenAPI, request hashing, persistence, history, stored result detail and provider health exist. | Implement running/completed/failed lifecycle transactions, stable provider failure mapping, concurrency limits, cancellation/deadline behavior and real database integration tests. |
@@ -37,7 +37,7 @@ outside the external volume to avoid AppleDouble metadata interference.
 
 | Repository | Result |
 | --- | --- |
-| `aeroroute-optimizer` | Ruff, mypy, 24 tests, 89.88% coverage, sdist and wheel passed. |
+| `aeroroute-optimizer` | Ruff, mypy, 27 tests and 89.15% coverage passed; OpenAP 2.5.0 was exercised directly for A320 and B738. |
 | `aeroroute-api` | Ruff, 22 tests including real PostGIS migration/import coverage, Alembic SQL through revision 0003, sdist and wheel passed. |
 | `aeroroute-data` | Ruff, 3 tests, sdist and wheel passed. |
 | `aeroroute-mlx` | Ruff, 4 tests, sdist and wheel passed. Native Gemma execution was not part of this check. |
@@ -46,14 +46,13 @@ outside the external volume to avoid AppleDouble metadata interference.
 | `aeroroute-contracts` | Three standard-library tests, four validated JSON/OpenAPI documents and a versioned ZIP build passed. |
 | `aeroroute-platform` | Ruff, 2 tests, Compose configuration and release-manifest validation passed through the reproducible `make check` command. |
 
-Total automated tests observed: 73.
+Total automated tests observed: 76.
 
 ## Required closure sequence
 
 1. Close Phase 0 reproducibility: governance files, standard commands, declared
    platform dependencies and repository-local CI.
-2. Decide the Phase 3 OpenAP scope and integrate production mass iteration for
-   Phase 4.
+2. Integrate production mass/fuel iteration and objective breakdown for Phase 4.
 3. Connect weather snapshots to optimization and pass Phase 5 metamorphic
    scenarios.
 4. Complete the Phase 6 run lifecycle and concurrency behavior, then persist
