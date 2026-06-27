@@ -19,7 +19,7 @@ orchestration, and native MLX validation.
 | --- | --- | --- | --- |
 | 0. Governance and skeleton | Partial | Eight repositories, boundaries, READMEs, AGENTS files, lock files, Compose, release manifest and local harness exist. Standard checks, CI workflows, CONTRIBUTING guides, CODEOWNERS and PR templates now exist in every repository. | Select and add the organization license, then verify GitHub branch protection, required checks and tracking issues outside the repositories. |
 | 1. Pure domain foundations | Complete | SI units, WGS84 geodesy, normalization, wind vectors and pure tests live in `aeroroute-optimizer`. | Keep numerical fixtures reviewed when algorithms change. |
-| 2. Database and airport catalogue | Partial | PostGIS schema, Alembic airport migration, immutable bundle generation/import and airport search endpoint exist. | Add disposable real-PostGIS migration up/down and repository integration tests. |
+| 2. Database and airport catalogue | Complete | PostGIS schema, Alembic migrations, immutable bundle generation/import, airport search and a real-PostGIS integration test cover upgrade/downgrade, idempotency and spatial coordinate order. | Keep the PostGIS image and migration test aligned with supported release platforms. |
 | 3. Aircraft performance abstraction | Partial | Provider port, curated deterministic performance and still-air segment estimates exist. | Implement or explicitly defer the OpenAP adapter; add fixed climb/descent estimates and adapter provenance/contract tests. |
 | 4. Still-air optimizer and solver | Partial | Bounded lattice, exhaustive oracle, layered label-setting solver, alternatives, budgets, diagnostics and golden fixtures exist. | Integrate the mass/fuel fixed-point loop into the production use case and expose the full objective/cost breakdown required by the HLD. |
 | 5. Weather integration | Partial | Weather port, Open-Meteo client, cache/stale policy, interpolation and provider-neutral wind segment evaluation exist. | The optimization endpoint still calls `optimize_still_air`; connect normalized weather snapshots to problem construction and pass the required metamorphic end-to-end scenarios. |
@@ -38,7 +38,7 @@ outside the external volume to avoid AppleDouble metadata interference.
 | Repository | Result |
 | --- | --- |
 | `aeroroute-optimizer` | Ruff, mypy, 24 tests, 89.88% coverage, sdist and wheel passed. |
-| `aeroroute-api` | Ruff, 21 tests, Alembic offline SQL through revision 0003, sdist and wheel passed. |
+| `aeroroute-api` | Ruff, 22 tests including real PostGIS migration/import coverage, Alembic SQL through revision 0003, sdist and wheel passed. |
 | `aeroroute-data` | Ruff, 3 tests, sdist and wheel passed. |
 | `aeroroute-mlx` | Ruff, 4 tests, sdist and wheel passed. Native Gemma execution was not part of this check. |
 | `aeroroute-mlx-training` | Ruff, 6 tests, sdist and wheel passed. No training run was performed. |
@@ -46,24 +46,22 @@ outside the external volume to avoid AppleDouble metadata interference.
 | `aeroroute-contracts` | Three standard-library tests, four validated JSON/OpenAPI documents and a versioned ZIP build passed. |
 | `aeroroute-platform` | Ruff, 2 tests, Compose configuration and release-manifest validation passed through the reproducible `make check` command. |
 
-Total automated tests observed: 72.
+Total automated tests observed: 73.
 
 ## Required closure sequence
 
 1. Close Phase 0 reproducibility: governance files, standard commands, declared
    platform dependencies and repository-local CI.
-2. Close Phase 2 integration with disposable PostGIS migration and importer
-   tests.
-3. Decide the Phase 3 OpenAP scope and integrate production mass iteration for
+2. Decide the Phase 3 OpenAP scope and integrate production mass iteration for
    Phase 4.
-4. Connect weather snapshots to optimization and pass Phase 5 metamorphic
+3. Connect weather snapshots to optimization and pass Phase 5 metamorphic
    scenarios.
-5. Complete the Phase 6 run lifecycle and concurrency behavior, then persist
+4. Complete the Phase 6 run lifecycle and concurrency behavior, then persist
    Phase 7 explanations.
-6. Record native Phase 8 baselines. Keep Phase 8B unpromoted unless those
+5. Record native Phase 8 baselines. Keep Phase 8B unpromoted unless those
    baselines justify training.
-7. Finish Phase 9 component/MSW and real-stack acceptance tests.
-8. Only then open Phase 10 hardening work.
+6. Finish Phase 9 component/MSW and real-stack acceptance tests.
+7. Only then open Phase 10 hardening work.
 
 ## Git hygiene decision
 
