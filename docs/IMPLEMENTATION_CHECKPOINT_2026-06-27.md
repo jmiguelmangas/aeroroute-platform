@@ -12,7 +12,7 @@ earlier phase.
 The product currently has a working Phase 9 user journey over a deterministic
 still-air backend. It is not ready to enter Phase 10 because several earlier
 phase acceptance criteria remain open, chiefly external repository governance,
-weather-aware orchestration, API lifecycle behavior, and native MLX validation.
+API lifecycle behavior, native MLX validation, and frontend real-stack tests.
 
 | Phase | Status | Implemented evidence | Remaining acceptance work |
 | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ weather-aware orchestration, API lifecycle behavior, and native MLX validation.
 | 2. Database and airport catalogue | Complete | PostGIS schema, Alembic migrations, immutable bundle generation/import, airport search and a real-PostGIS integration test cover upgrade/downgrade, idempotency and spatial coordinate order. | Keep the PostGIS image and migration test aligned with supported release platforms. |
 | 3. Aircraft performance abstraction | Complete | The provider port supports curated and optional OpenAP 2.5 adapters, explicit package provenance, strict SI conversion, fixed climb/descent estimates and adapter contract tests. Real A320 and B738 OpenAP calls were also verified locally. | Keep OpenAP optional and review its LGPL-3.0 dependency obligations before distribution. |
 | 4. Still-air optimizer and solver | Complete | The bounded lattice, exhaustive oracle, layered label-setting solver, alternatives, budgets, diagnostics and golden fixtures now run inside a pure production use case with three-pass mass/fuel convergence, monotonically decreasing representative mass, fixed terminal phases and a complete normalized objective breakdown. | Keep algorithm-versioned golden review mandatory when numerical assumptions change. |
-| 5. Weather integration | Partial | Weather port, Open-Meteo client, cache/stale policy, interpolation and provider-neutral wind segment evaluation exist. | The optimization endpoint still calls `optimize_still_air`; connect normalized weather snapshots to problem construction and pass the required metamorphic end-to-end scenarios. |
+| 5. Weather integration | Complete | The API builds ordered route snapshots from batched Open-Meteo coordinates, three pressure levels and adjacent forecast hours, with vector/time/geopotential interpolation, retries, cache/stale policy and explicit still-air fallback. The optimizer consumes the resulting wind field per layer and records tailwind components. Zero-wind, tailwind, headwind, reverse-route and longer-tailwind-corridor scenarios pass; a live Open-Meteo MAD-JFK run was also verified. | Keep provider fixtures synchronized with documented Open-Meteo response changes and retain offline default tests. |
 | 6. Application use case and API | Partial | Typed request/response, OpenAPI, request hashing, persistence, history, stored result detail and provider health exist. | Implement running/completed/failed lifecycle transactions, stable provider failure mapping, concurrency limits, cancellation/deadline behavior and real database integration tests. |
 | 7. Deterministic explanation | Partial | Fact mapper, deterministic fallback, warnings, provider label and endpoint exist. | Persist explanations and broaden golden tests for deltas and stable wording. |
 | 8. MLX prompt-only service | Partial | Separate service, constrained prompt, output contract, numeric validator and fallback behavior exist. | Run and record Gemma 3 12B/4B Apple Silicon compatibility, model lifecycle, memory/latency benchmark and repeated native contract suite. |
@@ -36,8 +36,8 @@ outside the external volume to avoid AppleDouble metadata interference.
 
 | Repository | Result |
 | --- | --- |
-| `aeroroute-optimizer` | Ruff, mypy, 30 tests and 89.51% coverage passed; OpenAP 2.5.0 was exercised directly for A320 and B738. |
-| `aeroroute-api` | Ruff, 22 tests including real PostGIS migration/import coverage, Alembic SQL through revision 0003, sdist and wheel passed. |
+| `aeroroute-optimizer` | Ruff, mypy, 34 tests and 89.63% coverage passed; OpenAP 2.5.0 was exercised directly for A320 and B738. |
+| `aeroroute-api` | Ruff, 27 tests including real PostGIS migration/import coverage, weather forecast/fallback orchestration and CORS preflight, Alembic SQL through revision 0003, sdist and wheel passed. |
 | `aeroroute-data` | Ruff, 3 tests, sdist and wheel passed. |
 | `aeroroute-mlx` | Ruff, 4 tests, sdist and wheel passed. Native Gemma execution was not part of this check. |
 | `aeroroute-mlx-training` | Ruff, 6 tests, sdist and wheel passed. No training run was performed. |
@@ -45,20 +45,18 @@ outside the external volume to avoid AppleDouble metadata interference.
 | `aeroroute-contracts` | Three standard-library tests, four validated JSON/OpenAPI documents and a versioned ZIP build passed. |
 | `aeroroute-platform` | Ruff, 2 tests, Compose configuration and release-manifest validation passed through the reproducible `make check` command. |
 
-Total automated tests observed: 79.
+Total automated tests observed: 88.
 
 ## Required closure sequence
 
 1. Close Phase 0 reproducibility: governance files, standard commands, declared
    platform dependencies and repository-local CI.
-2. Connect weather snapshots to optimization and pass Phase 5 metamorphic
-   scenarios.
-3. Complete the Phase 6 run lifecycle and concurrency behavior, then persist
+2. Complete the Phase 6 run lifecycle and concurrency behavior, then persist
    Phase 7 explanations.
-4. Record native Phase 8 baselines. Keep Phase 8B unpromoted unless those
+3. Record native Phase 8 baselines. Keep Phase 8B unpromoted unless those
    baselines justify training.
-5. Finish Phase 9 component/MSW and real-stack acceptance tests.
-6. Only then open Phase 10 hardening work.
+4. Finish Phase 9 component/MSW and real-stack acceptance tests.
+5. Only then open Phase 10 hardening work.
 
 ## Git hygiene decision
 
