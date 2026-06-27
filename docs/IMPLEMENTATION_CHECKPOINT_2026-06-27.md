@@ -9,10 +9,10 @@ earlier phase.
 
 ## Executive status
 
-The product currently has a working Phase 9 user journey over a deterministic
-still-air backend. It is not ready to enter Phase 10 because several earlier
-phase acceptance criteria remain open, chiefly external repository governance,
-native MLX validation and frontend real-stack acceptance tests.
+The product now has a complete Phase 9 user journey over the deterministic API
+and database stack. It is not ready to enter Phase 10 because earlier acceptance
+criteria remain open, chiefly external repository governance and native MLX
+validation.
 
 | Phase | Status | Implemented evidence | Remaining acceptance work |
 | --- | --- | --- | --- |
@@ -26,7 +26,7 @@ native MLX validation and frontend real-stack acceptance tests.
 | 7. Deterministic explanation | Complete | The fact mapper reads only versioned result snapshots, distinguishes modeled trip fuel from phase/reserve assumptions, renders stable positive, negative and negligible deltas, propagates degraded-data warnings and retains the non-operational disclaimer. Migration 0005 persists one idempotent template or MLX explanation and its facts per completed run. | Keep wording changes golden-reviewed and never permit the explanation layer to recalculate authoritative route values. |
 | 8. MLX prompt-only service | Partial | Separate service, constrained prompt, output contract, numeric validator and fallback behavior exist. | Run and record Gemma 3 12B/4B Apple Silicon compatibility, model lifecycle, memory/latency benchmark and repeated native contract suite. |
 | 8B. QLoRA training | Partial, pre-training | Deterministic records, grouped split, evaluation metrics, promotion logic and example configs exist. | No smoke training, adapter save/load, gold-set comparison, cards, compatibility report, checksums or promoted artifact exist. This remains optional until Phase 8 baselines are measured. |
-| 9. Frontend vertical slices | Functional, acceptance partial | Generated OpenAPI types, React Hook Form/Zod, 35-airport autocomplete, six selectable aircraft types, TanStack Query, deterministic results, backend GeoJSON, layer controls, explicitly labelled synthetic-node details, dynamic route endpoints, history/detail routes, objective and fuel breakdown, Storybook, Playwright degraded paths and axe checks exist. A live UI-to-API MAD-JFK B77W search was verified. | Add React Testing Library/MSW behavior tests, full real-stack Playwright acceptance and a generated-client compatibility check in CI. |
+| 9. Frontend vertical slices | Complete | Generated OpenAPI types, React Hook Form/Zod, 35-airport autocomplete, six selectable aircraft types, TanStack Query, deterministic results, backend GeoJSON, layer controls, explicitly labelled synthetic-node details, dynamic route endpoints, history/detail routes, objective and fuel breakdown, and Storybook exist. React Testing Library/MSW covers widebody submission and degraded behavior; CI checks generated-client freshness against `aeroroute-contracts`; six mocked Playwright journeys cover happy/degraded/MLX/history/accessibility behavior; and a no-mock B788 journey passes against the live API and PostGIS. | Keep mocked browser tests in PR CI and run the real-stack journey in release verification whenever API or contract behavior changes. |
 | 10. Hardening | Not started | Health endpoints and some graceful fallback behavior are useful prerequisites only. | Do not begin until the closure sequence below is complete. |
 
 ## Verification evidence
@@ -41,11 +41,11 @@ outside the external volume to avoid AppleDouble metadata interference.
 | `aeroroute-data` | Ruff, 5 tests, deterministic 35-airport bundle, sdist and wheel passed. |
 | `aeroroute-mlx` | Ruff, 4 tests, sdist and wheel passed. Native Gemma execution was not part of this check. |
 | `aeroroute-mlx-training` | Ruff, 6 tests, sdist and wheel passed. No training run was performed. |
-| `aeroroute-web` | ESLint/Prettier, TypeScript, 3 unit tests, production build, Storybook build and 6 Playwright tests passed. |
+| `aeroroute-web` | ESLint/Prettier, TypeScript, generated-client freshness, 4 unit/component tests, production build, Storybook build, 6 mocked Playwright tests and 1 real-stack Playwright test passed. |
 | `aeroroute-contracts` | Three standard-library tests, four validated JSON/OpenAPI documents and a versioned ZIP build passed. |
 | `aeroroute-platform` | Ruff, 2 tests, Compose configuration and release-manifest validation passed through the reproducible `make check` command. |
 
-Total automated tests observed: 112.
+Total automated tests observed: 114.
 
 ## Required closure sequence
 
@@ -53,8 +53,8 @@ Total automated tests observed: 112.
    platform dependencies and repository-local CI.
 2. Record native Phase 8 baselines. Keep Phase 8B unpromoted unless those
    baselines justify training.
-3. Finish Phase 9 component/MSW and real-stack acceptance tests.
-4. Only then open Phase 10 hardening work.
+3. Keep the completed Phase 9 real-stack journey in release verification.
+4. Only after Phases 0 and 8 close, open Phase 10 hardening work.
 
 ## Git hygiene decision
 
