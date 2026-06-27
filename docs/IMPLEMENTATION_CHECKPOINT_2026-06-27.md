@@ -17,7 +17,7 @@ orchestration, and native MLX validation.
 
 | Phase | Status | Implemented evidence | Remaining acceptance work |
 | --- | --- | --- | --- |
-| 0. Governance and skeleton | Partial | Eight repositories, boundaries, READMEs, AGENTS files, lock files, Compose, release manifest and local harness exist. Platform and contracts tooling now declare reproducible standard `make check` surfaces. | LICENSE, CONTRIBUTING, CODEOWNERS and PR templates are absent across the organization. Several repositories lack CI. |
+| 0. Governance and skeleton | Partial | Eight repositories, boundaries, READMEs, AGENTS files, lock files, Compose, release manifest and local harness exist. Standard checks, CI workflows, CONTRIBUTING guides, CODEOWNERS and PR templates now exist in every repository. | Select and add the organization license, then verify GitHub branch protection, required checks and tracking issues outside the repositories. |
 | 1. Pure domain foundations | Complete | SI units, WGS84 geodesy, normalization, wind vectors and pure tests live in `aeroroute-optimizer`. | Keep numerical fixtures reviewed when algorithms change. |
 | 2. Database and airport catalogue | Partial | PostGIS schema, Alembic airport migration, immutable bundle generation/import and airport search endpoint exist. | Add disposable real-PostGIS migration up/down and repository integration tests. |
 | 3. Aircraft performance abstraction | Partial | Provider port, curated deterministic performance and still-air segment estimates exist. | Implement or explicitly defer the OpenAP adapter; add fixed climb/descent estimates and adapter provenance/contract tests. |
