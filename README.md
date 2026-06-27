@@ -9,5 +9,6 @@ and release manifests for AeroRoute MLX. It owns no product business logic.
 
 ## Commands
 
+Run `make bootstrap` once, then `make check` for repository-local validation.
 `make dev-up`, `make dev-down`, `make integration`, `make e2e`, and
 `make release-verify` compose the released sibling artifacts.

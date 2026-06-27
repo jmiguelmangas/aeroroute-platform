@@ -17,7 +17,7 @@ orchestration, and native MLX validation.
 
 | Phase | Status | Implemented evidence | Remaining acceptance work |
 | --- | --- | --- | --- |
-| 0. Governance and skeleton | Partial | Eight repositories, boundaries, READMEs, AGENTS files, lock files, Compose, release manifest and local harness exist. | LICENSE, CONTRIBUTING, CODEOWNERS and PR templates are absent across the organization. Several repositories lack CI. `aeroroute-contracts` lacks the standard Makefile. Platform `make check` fails in a clean environment because PyYAML is undeclared. |
+| 0. Governance and skeleton | Partial | Eight repositories, boundaries, READMEs, AGENTS files, lock files, Compose, release manifest and local harness exist. Platform and contracts tooling now declare reproducible standard `make check` surfaces. | LICENSE, CONTRIBUTING, CODEOWNERS and PR templates are absent across the organization. Several repositories lack CI. |
 | 1. Pure domain foundations | Complete | SI units, WGS84 geodesy, normalization, wind vectors and pure tests live in `aeroroute-optimizer`. | Keep numerical fixtures reviewed when algorithms change. |
 | 2. Database and airport catalogue | Partial | PostGIS schema, Alembic airport migration, immutable bundle generation/import and airport search endpoint exist. | Add disposable real-PostGIS migration up/down and repository integration tests. |
 | 3. Aircraft performance abstraction | Partial | Provider port, curated deterministic performance and still-air segment estimates exist. | Implement or explicitly defer the OpenAP adapter; add fixed climb/descent estimates and adapter provenance/contract tests. |
@@ -43,10 +43,10 @@ outside the external volume to avoid AppleDouble metadata interference.
 | `aeroroute-mlx` | Ruff, 4 tests, sdist and wheel passed. Native Gemma execution was not part of this check. |
 | `aeroroute-mlx-training` | Ruff, 6 tests, sdist and wheel passed. No training run was performed. |
 | `aeroroute-web` | ESLint/Prettier, TypeScript, 3 unit tests, production build, Storybook build and 6 Playwright tests passed. |
-| `aeroroute-contracts` | Four JSON/OpenAPI documents parsed and basic document markers were validated. |
-| `aeroroute-platform` | Release manifest, Compose configuration and shell/Python syntax passed when PyYAML was supplied temporarily. Plain `make check` failed because PyYAML is not declared. |
+| `aeroroute-contracts` | Three standard-library tests, four validated JSON/OpenAPI documents and a versioned ZIP build passed. |
+| `aeroroute-platform` | Ruff, 2 tests, Compose configuration and release-manifest validation passed through the reproducible `make check` command. |
 
-Total automated tests observed: 67.
+Total automated tests observed: 72.
 
 ## Required closure sequence
 
