@@ -1,11 +1,16 @@
 # aeroroute-platform
 
+The authoritative architecture and implementation guide is
+[`docs/HLD.md`](docs/HLD.md), currently Version 6.0. Copies outside this
+repository are exports and must be regenerated from that source.
+
 Platform composition, local development, integration testing, observability,
 and release manifests for AeroRoute MLX. It owns no product business logic.
 
-> AeroRoute MLX is an educational trajectory-efficiency simulator. Results are
-> approximate, may use incomplete public data, and are not suitable for
-> operational flight planning or safety-critical decisions.
+> AeroRoute MLX generates an educational pre-operational flight-plan
+> simulation. Results are approximate, may use incomplete public data, are not
+> an ICAO-fileable flight plan, and are not suitable for operational or
+> safety-critical decisions.
 
 ## Commands
 
