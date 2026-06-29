@@ -10,9 +10,9 @@ Date: 2026-06-27
 
 ## Version 6 delivery update — 29 June 2026
 
-Expanded-MVP progress is **86%**. Phases 10 through 12 are complete; the next
-implementation phase is Phase 13 supported-route generalization, immutable
-AIRAC cycle manifests, provider budgets, and progressive graph loading.
+Expanded-MVP progress is **93%**. Phases 10 through 13 are complete; the next
+implementation phase is Phase 14 observability, security, performance and
+release hardening.
 
 Implemented evidence:
 
@@ -74,6 +74,20 @@ Implemented evidence:
 - JSON and A4 PDF exports use the stored snapshot. The two-page live B77W PDF
   was rendered to PNG and visually checked for readable repeated headers,
   pagination, footer, warning banner and mandatory disclaimer.
+- airport reads now select only the most recently imported immutable airport
+  snapshot. Historical rows remain available without duplicating search or
+  route-planning results;
+- the bundle contains 45 airports after adding PANC, PAFA and PHNL for Pacific
+  coverage. Its checksum is frozen in the reference-scenario manifest;
+- AIRAC caches expire after six hours, record observed cycles, load corridor
+  data on demand and enforce configurable request concurrency and timeout.
+  Navigation snapshots persist source, cycles, route status and loading mode;
+- `reference/flight-plan-scenarios-2026-06-29.json` freezes MAD-JFK, JFK-MAD,
+  DXB-MAD and NRT-SFO with real terminal identifiers, alternates and diversion
+  minima. DXB-MAD is connected; oceanic gaps remain explicit degraded `DCT`;
+- infeasible NRT-SFO B788 payload/fuel returns stable
+  `422 aircraft_mass_outside_profile`; a feasible payload produces a traced OFP
+  with GULBO2, STINS4, KLAX and CYVR.
 
 Deferred to Phase 13 hardening/generalization:
 
@@ -81,11 +95,12 @@ Deferred to Phase 13 hardening/generalization:
 - replacement of remaining `DCT` legs only when a versioned source proves
   connectivity; existing degraded output remains the safe fallback.
 
-Current Phase 12 verification: optimizer 60 tests with at least 90% coverage,
-API 63 collected tests (62 passed, 1 skipped), web 13 unit/component tests, 7
+Current Phase 13 verification: optimizer 60 tests with 90.19% coverage, API 64
+collected tests (63 passed, 1 skipped), web 13 unit/component tests, 7
 mocked Playwright journeys, 1 real-stack journey, contracts 4 tests, and data 5
-tests. Generated-client freshness, production/Storybook builds, migration 0007,
-OFP idempotency, snapshot reload, PDF structure and visual rendering passed.
+tests. Platform has 3 tests including the four-route release manifest.
+Generated-client freshness, production/Storybook builds, migration 0007, OFP
+idempotency, snapshot reload, PDF rendering and live route acceptance passed.
 
 This checkpoint compares the current eight-repository workspace with HLD phases
 0 through 10. A phase is marked complete only when its implementation and its
@@ -97,13 +112,13 @@ earlier phase.
 The product has a complete Phase 9 user journey and a complete Version 6 Phase
 10 terminal-navigation slice over the deterministic API and database stack.
 Phase 0 governance and the optional Phase 8/8B model work remain independently
-open; they do not block beginning Phase 13 generalization.
+open; they do not block beginning Phase 14 hardening.
 
 | Phase | Status | Implemented evidence | Remaining acceptance work |
 | --- | --- | --- | --- |
 | 0. Governance and skeleton | Partial | Eight repositories, boundaries, READMEs, AGENTS files, lock files, Compose, release manifest and local harness exist. Standard checks, CI workflows, CONTRIBUTING guides, CODEOWNERS and PR templates now exist in every repository. | Select and add the organization license, then verify GitHub branch protection, required checks and tracking issues outside the repositories. |
 | 1. Pure domain foundations | Complete | SI units, WGS84 geodesy, normalization, wind vectors and pure tests live in `aeroroute-optimizer`. | Keep numerical fixtures reviewed when algorithms change. |
-| 2. Database and airport catalogue | Complete | PostGIS migrations, immutable bundle import, airport search, idempotency and spatial tests pass. The public-domain bundle now contains 42 airports including transatlantic diversion references BIKF, CYQX, CYYT, EINN and LPLA. AIRAC runways, procedures, fixes, airway graphs and cycle-versioned navigation snapshots support terminal assembly without fabricated identifiers. | Progressive first-load graph delivery and broader airport coverage continue in Phase 13. |
+| 2. Database and airport catalogue | Complete | PostGIS migrations, active immutable snapshot selection, airport search, idempotency and spatial tests pass. The public-domain bundle contains 45 airports including Atlantic and Pacific diversion references. AIRAC runways, procedures, fixes, airway graphs and cycle-versioned navigation manifests support terminal assembly without fabricated identifiers. | Broader catalogue coverage remains a post-MVP data operation. |
 | 3. Aircraft performance abstraction | Complete | The provider port supports curated and optional OpenAP 2.5 adapters, explicit package provenance, strict SI conversion, fixed climb/descent estimates and adapter contract tests. Aircraft-specific profiles and mass assumptions cover A320, B738, B77W, B788, A359 and A388; real OpenAP calls were verified locally for all six types. | Keep OpenAP optional and review its LGPL-3.0 dependency obligations before distribution. |
 | 4. Still-air optimizer and solver | Complete | The bounded lattice, exhaustive oracle, layered label-setting solver, alternatives, budgets, diagnostics and golden fixtures now run inside a pure production use case with three-pass mass/fuel convergence, monotonically decreasing representative mass, fixed terminal phases and a complete normalized objective breakdown. | Keep algorithm-versioned golden review mandatory when numerical assumptions change. |
 | 5. Weather integration | Complete | The API builds ordered route snapshots from batched Open-Meteo coordinates, three pressure levels and adjacent forecast hours, with vector/time/geopotential interpolation, retries, cache/stale policy and explicit still-air fallback. The optimizer consumes the resulting wind field per layer and records tailwind components. A read-only dynamic corridor endpoint also exposes 40 real east/north wind vectors around the requested route endpoints at the selected forecast hour and cruise pressure level for MVP visualization. Zero-wind, tailwind, headwind, reverse-route and longer-tailwind-corridor scenarios pass; live Open-Meteo MAD-JFK and DXB-MAD field requests were verified. | Keep provider fixtures synchronized with documented Open-Meteo response changes, retain offline default tests, and do not present the coarse MVP field as operational meteorology. |
@@ -115,6 +130,7 @@ open; they do not block beginning Phase 13 generalization.
 | 10. Terminal navigation | Complete | AIRAC runway catalogue, advisory surface-wind ranking, editable runway inputs, SID/STAR selection, connected or explicit degraded `DCT` assembly, cycle snapshots, full-screen map and four live reference scenarios. | Preserve the non-operational boundary; progressive graph loading and reducing sourced `DCT` gaps continue in Phase 13. |
 | 11. Fuel, alternates and diversions | Complete | Versioned simplified EASA arithmetic, bounded full-mass reconciliation, editable/suggested runway-compatible destination alternate, AIRAC-sourced diversion candidates, additive OpenAPI fields, persistence and frontend review views pass unit and real-stack verification. | The direct-distance alternate estimate remains educational. Weather minima, NOTAM, airport status, ETOPS/EDTO and dispatch approval remain explicitly outside scope. |
 | 12. OFP workflow and frontend | Complete | Immutable flight-plan snapshots, callsign/payload-aware creation, coded route, navlog, fuel/mass, terminal navigation, alternates/diversions, saved-plan history, map and non-operational JSON/PDF exports pass mocked and real-stack verification. | Exports are educational artifacts only and intentionally cannot be submitted as ICAO FPL. |
+| 13. Supported-route generalization | Complete | Active catalogue snapshots, bounded on-demand AIRAC loading, cycle/status manifests, stable mass errors and four frozen live reference routes cover the supported MVP catalogue with complete or explicit degraded output. | Expanding beyond the 45-airport catalogue remains post-MVP; no invented identifiers or silent fallback are permitted. |
 
 ## Verification evidence
 
@@ -124,15 +140,15 @@ outside the external volume to avoid AppleDouble metadata interference.
 | Repository | Result |
 | --- | --- |
 | `aeroroute-optimizer` | Ruff, mypy, 60 tests and 90.18% coverage passed, including simplified EASA fuel arithmetic and aircraft planning assumptions. |
-| `aeroroute-api` | Ruff, 63 collected tests including immutable flight plans, canonical idempotency, payload mass, PDF rendering, fuel/alternate planning, PostGIS lifecycle, AIRAC assembly, weather orchestration and stable errors; 62 passed and 1 optional integration test skipped. |
-| `aeroroute-data` | Ruff, 5 tests and deterministic 42-airport bundle passed. |
+| `aeroroute-api` | Ruff, 64 collected tests including active snapshots, TTL/cycle AIRAC cache, bounded provider access, immutable flight plans, payload mass, PDF rendering, PostGIS lifecycle and stable errors; 63 passed and 1 optional integration test skipped. |
+| `aeroroute-data` | Ruff, 5 tests and deterministic 45-airport bundle passed. |
 | `aeroroute-mlx` | Ruff, 12 tests, sdist and wheel passed. MLX 0.31.2 and MLX-LM 0.31.3 loaded the local Gemma 3 4B checkpoint; 3/3 native generations passed schema, numeric and operational-claim validation. |
 | `aeroroute-mlx-training` | Ruff, 6 tests, sdist and wheel passed. No training run was performed. |
 | `aeroroute-web` | ESLint/Prettier, TypeScript, generated-client freshness, 13 unit/component tests, production build, Storybook build, 7 mocked Playwright tests and 1 real-stack Playwright test passed. |
 | `aeroroute-contracts` | Four standard-library tests, four validated JSON/OpenAPI documents and a versioned ZIP build passed. |
-| `aeroroute-platform` | Ruff, 2 tests, Compose configuration and release-manifest validation passed through the reproducible `make check` command. |
+| `aeroroute-platform` | Ruff, 3 tests, four-route reference manifest, Compose configuration and release-manifest validation passed through `make check`. |
 
-Total automated checks observed: 173, including 8 Playwright journeys.
+Total automated checks observed: 175, including 8 Playwright journeys.
 
 ## Required closure sequence
 
@@ -141,8 +157,8 @@ Total automated checks observed: 173, including 8 Playwright journeys.
 2. Record native Phase 8 baselines. Keep Phase 8B unpromoted unless those
    baselines justify training.
 3. Keep the completed Phase 9/10 real-stack journeys in release verification.
-4. Implement Phase 13 supported-route generalization and progressive AIRAC
-   loading next; retain Phase 14 for final hardening.
+4. Implement Phase 14 observability, security, performance and release
+   hardening next.
 
 ## Git hygiene decision
 

@@ -2864,6 +2864,15 @@ Work items:
 
 Acceptance: any supported airport pair either produces a traceable complete/degraded OFP or a stable actionable problem response; it never silently falls back to invented navigation data. Completion target: 93%.
 
+Implementation status (29 June 2026): complete for the supported MVP catalogue.
+All airport reads select one immutable active snapshot while preserving prior
+imports. AIRAC access uses bounded concurrency, configurable timeout, six-hour
+TTL caches, on-demand graph expansion and per-run cycle/status manifests. A
+versioned release fixture freezes MAD-JFK, JFK-MAD, DXB-MAD and NRT-SFO with
+real runways, SID/STAR, alternates and diversion minima. Infeasible payload/fuel
+combinations return an actionable mass-profile problem instead of a generic
+provider failure.
+
 ### 33.5 Phase 14 — Observability, security, and hardening
 
 **Owning repositories:** each service owns local instrumentation and security; `aeroroute-platform` owns dashboards, runbooks, integration load tests, and release verification.
