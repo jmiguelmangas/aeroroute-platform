@@ -2843,6 +2843,14 @@ Work items:
 
 Acceptance: a user can create, inspect, reload, and export the same traceable OFP; degraded plans retain all warnings; the disclaimer is present on screen and in exports. Completion target: 86%.
 
+Implementation status (29 June 2026): complete for the expanded MVP. Additive
+`POST/GET /flight-plans` endpoints persist an immutable request and full result
+snapshot linked to its optimization run. The UI captures callsign, payload,
+runways, alternate and extra fuel, then renders coded route, navlog, fuel/mass,
+terminal procedures, alternate, diversions, sources, warnings and map. JSON and
+paginated A4 PDF exports derive only from the stored snapshot and repeat the
+mandatory non-operational, non-ICAO-fileable disclaimer.
+
 ### 33.4 Phase 13 — Supported-route generalization
 
 **Owning repositories:** `aeroroute-data`, `aeroroute-api`, and `aeroroute-platform`.
