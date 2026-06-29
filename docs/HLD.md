@@ -2819,6 +2819,16 @@ Work items:
 
 Acceptance: every fuel component reconciles to block/take-off fuel and mass; alternate selection is deterministic with frozen inputs; unsuitable or data-deficient airports are rejected or flagged. Completion target: 78%.
 
+Implementation status (29 June 2026): complete for the expanded MVP. The
+versioned `easa_simplified_v1` policy exposes taxi, trip, contingency,
+destination-alternate, final-reserve, extra, take-off and block fuel. A bounded
+outer iteration feeds non-trip fuel back into trajectory mass until stable.
+Destination alternates and en-route diversion candidates require an AIRAC
+published runway meeting the aircraft planning threshold; missing or
+incompatible data remains explicit. Alternate time and fuel are educational
+direct-distance estimates and do not include weather minima, NOTAM, airport
+status, ETOPS/EDTO approval, or dispatch authorization.
+
 ### 33.3 Phase 12 — OFP workflow and frontend
 
 **Owning repositories:** `aeroroute-contracts`, `aeroroute-api`, `aeroroute-web`, and `aeroroute-platform`.
