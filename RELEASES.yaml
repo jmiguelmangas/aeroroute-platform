@@ -1,10 +1,10 @@
 release: 1.0.0-mvp
 components:
-  contracts: { version: 0.5.0 }
+  contracts: { version: 0.6.0 }
   optimizer:
     version: 0.2.1
     solver: { implementation: layered-label-setting, version: 0.2.0 }
-  api: { version: 0.5.0 }
+  api: { version: 0.6.0 }
   data:
     version: 0.1.0
     bundle_version: 2026.06.29-mvp.4
@@ -12,3 +12,12 @@ components:
   mlx: { version: 0.2.0, prompt_version: 0.2.0 }
   mlx_training: { version: 0.1.0, dataset_version: 0.1.0 }
   web: { version: 0.1.0 }
+references:
+  flight_plan_scenarios:
+    path: reference/flight-plan-scenarios-2026-06-29.json
+    airac_cycle: "2606"
+    airport_bundle_sha256: f5d0d51de0c1b9bf0c2ed5ab2f98d7a8dc6d7ebf26ff2797a6f0f76337a41bff
+  route_coverage:
+    path: reference/supported-route-coverage-2026-07-08.json
+    airac_cycle: "2606"
+    airport_bundle_sha256: f5d0d51de0c1b9bf0c2ed5ab2f98d7a8dc6d7ebf26ff2797a6f0f76337a41bff
