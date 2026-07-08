@@ -2918,6 +2918,41 @@ coverage, stable degraded-provider problem modes, SBOM/license inventory,
 operations runbook, live verifier and performance-budget tooling. `make check`
 runs the same gate so release evidence cannot drift silently.
 
+### 33.6 Post-MVP operational readiness program
+
+The completed Version 6 release is not an operational flight-planning system.
+Making AeroRoute suitable for operational dispatch is a separate regulated
+program, not a UI flag or disclaimer change. The controlling plan is
+`docs/OPERATIONAL_READINESS_PLAN.md`.
+
+Operational readiness requires, at minimum:
+
+- a named operator, fleet, jurisdiction and intended operational use;
+- a safety case with hazards, mitigations, verification evidence and operational
+  procedures;
+- licensed operational navdata, weather, NOTAM, restrictions, aircraft
+  performance and filing data;
+- operator-specific manuals, training, backup procedures, compliance monitoring
+  and approval path;
+- ICAO filing and aircraft capability logic that cannot exceed actual operator
+  approvals;
+- independent verification that fuel, performance, route validation and filing
+  behavior match the applicable rules and company policy.
+
+Post-MVP phases:
+
+| Phase | Name | Exit gate |
+| --- | --- | --- |
+| 15 | Regulatory scope and safety case | Intended function, hazards, criticality, mitigations and evidence requirements are approved for implementation. |
+| 16 | Certified data supply chain | Every operational OFP field has licensed source, cycle, timestamp, quality, expiry and blocking behavior. |
+| 17 | Operational route and filing engine | Invalid, incomplete, stale or unapproved inputs cannot be filed or promoted as operational. |
+| 18 | Operational fuel, performance and dispatch | Fuel/performance results match approved independent benchmark cases for the target fleet and policy. |
+| 19 | Assurance, security and operations | Traceability, IV&V, release control, audit logs, SLOs, incident response and fallback procedures are in force. |
+| 20 | Operator approval and rollout | Operator/regulator acceptance is recorded for a specific build, fleet, data cycle and manuals revision. |
+
+Until these phases pass for a specific operator, all APIs, UI screens, exports
+and release notes must preserve the non-operational, non-ICAO-fileable boundary.
+
 ---
 
 # Part III — Testing Strategy
@@ -3459,6 +3494,19 @@ Ticket IDs include a repository prefix so work can be assigned without ambiguity
 - `PLAT-631` reproducible release manifest across AIRAC, weather, aircraft, optimizer, API, web, and MLX
 - `PLAT-632` load, restart, degraded-provider, and four-route release verification
 
+### Epic L — Operational readiness
+
+- `PLAT-701` operational requirements and evidence schema
+- `PLAT-702` safety-case and hazard-log baseline
+- `DATA-701` licensed operational data-source contracts and expiry gates
+- `API-701` `ops_mode` boundary and operational-mode blocker
+- `API-702` aircraft capability and operator-approval model
+- `API-703` ICAO FPL validation design, not filing enablement
+- `API-704` NOTAM/RAD/ATC restriction ingestion design
+- `OPT-701` approved performance-data integration plan
+- `WEB-701` operational gap dashboard and approval-state UI
+- `PLAT-703` operator/regulator submission evidence pack
+
 ### 42.1 Required integration checkpoints
 
 - **Checkpoint 1:** optimizer wheel consumed by API with frozen still-air scenario; production solver matches the exhaustive oracle on tiny fixtures and emits stable diagnostics.
@@ -3472,6 +3520,9 @@ Ticket IDs include a repository prefix so work can be assigned without ambiguity
 - **Checkpoint 8:** simplified fuel plan reconciles and destination-alternate/diversion results reproduce from frozen inputs.
 - **Checkpoint 9:** persisted OFP create, reload, and JSON/PDF export remain identical and visibly non-operational.
 - **Checkpoint 10:** supported-route matrix and degraded-provider release suite pass before Version 6 is declared complete.
+- **Checkpoint 11:** operational modes remain disabled unless operator profile,
+  licensed data, safety case, requirements traceability and approval evidence
+  are present.
 
 ## 43. Definition of done
 
