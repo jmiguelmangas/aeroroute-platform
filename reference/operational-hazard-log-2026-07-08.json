@@ -1,0 +1,105 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-07-08T00:00:00Z",
+  "hazards": [
+    {
+      "blocking_for_operational_use": true,
+      "failure_condition": "A generated route is incomplete, stale, incompatible with procedures, or not permitted, but is treated as suitable for dispatch.",
+      "id": "OPS-HAZ-001",
+      "mitigations": [
+        "Keep active mode locked to simulator.",
+        "Require licensed AIRAC, procedure, airway, RAD/ATC and route-availability validation before any operational release."
+      ],
+      "phase": 15,
+      "severity": "hazardous",
+      "status": "open",
+      "title": "Wrong route released",
+      "verification": [
+        "Operational readiness endpoint reports route/filer blockers until evidence is accepted.",
+        "Route validation tests reject invented identifiers and disconnected procedures."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
+      "failure_condition": "Fuel totals or reserves are underestimated because simplified educational fuel is mistaken for approved dispatch fuel.",
+      "id": "OPS-HAZ-002",
+      "mitigations": [
+        "Label every current fuel result as simplified and non-operational.",
+        "Require approved aircraft performance, fuel policy, benchmark reconciliation and independent validation."
+      ],
+      "phase": 15,
+      "severity": "hazardous",
+      "status": "open",
+      "title": "Wrong fuel released",
+      "verification": [
+        "Fuel plan outputs include operationally_approved=false.",
+        "Phase 18 benchmark suite must pass before approved mode can be considered."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
+      "failure_condition": "Out-of-date navdata, weather, NOTAM, airport status or restriction data is used without blocking operational release.",
+      "id": "OPS-HAZ-003",
+      "mitigations": [
+        "Keep public/demo data outside the operational approval path.",
+        "Add source, cycle, timestamp, license, quality, expiry and fallback gates for operational data."
+      ],
+      "phase": 16,
+      "severity": "major",
+      "status": "open",
+      "title": "Stale or unapproved data used",
+      "verification": [
+        "Certified data supply-chain tests fail closed on stale or unlicensed operational inputs."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
+      "failure_condition": "AI-generated explanation text is interpreted as dispatch authority or invents unsupported operational reasoning.",
+      "id": "OPS-HAZ-004",
+      "mitigations": [
+        "Keep explanations advisory and grounded in deterministic facts.",
+        "Disallow AI text from authorizing, altering or filing a route."
+      ],
+      "phase": 15,
+      "severity": "major",
+      "status": "open",
+      "title": "AI explanation misuse",
+      "verification": [
+        "Explanation tests enforce non-operational wording.",
+        "Approved workflow must separate explanatory text from dispatcher authorization."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
+      "failure_condition": "Generated ICAO FPL fields exceed aircraft equipment, operator approvals or filing gateway acceptance.",
+      "id": "OPS-HAZ-005",
+      "mitigations": [
+        "Do not enable ICAO filing in the simulator track.",
+        "Model aircraft capability, operator approval and filing validation before any filing integration."
+      ],
+      "phase": 17,
+      "severity": "hazardous",
+      "status": "open",
+      "title": "Filing capability exceeds approval",
+      "verification": [
+        "Operational route and filing engine rejects unapproved aircraft capabilities and unavailable filing paths."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
+      "failure_condition": "A route ignores NOTAM, RAD, ATC, airspace, airport-status or flow restrictions.",
+      "id": "OPS-HAZ-006",
+      "mitigations": [
+        "Keep restriction domains outside the MVP operational claim.",
+        "Require restriction providers and fail-closed operational blocking rules."
+      ],
+      "phase": 17,
+      "severity": "major",
+      "status": "open",
+      "title": "Restriction data missing",
+      "verification": [
+        "Phase 17 acceptance tests prove unavailable restrictions block operational filing."
+      ]
+    }
+  ]
+}

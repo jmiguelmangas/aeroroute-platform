@@ -222,6 +222,23 @@ readiness foundation:
    operator profile and approval evidence.
 5. Add an operational gap dashboard in `aeroroute-web`.
 
+## Versioned Evidence Baseline
+
+Implementation update, 8 July 2026:
+
+- `aeroroute-contracts` publishes JSON schemas for operational readiness
+  evidence and the operational hazard log.
+- `reference/operational-readiness-evidence-2026-07-08.json` is the current
+  baseline for requirements, evidence gates and the simulator-only guardrail.
+- `reference/operational-hazard-log-2026-07-08.json` is the current preliminary
+  hazard log baseline.
+- `make operational-readiness` validates that operational use remains disabled,
+  required gates still block operations, and no baseline hazard is accepted
+  without safety evidence.
+
+These files are release evidence for the non-operational boundary. They are not
+approval evidence for dispatch use.
+
 Only after those gates exist should route filing, NOTAM, RAD, approved
 performance and operator-specific dispatch workflows be implemented.
 
@@ -233,6 +250,6 @@ Implementation update, 8 July 2026:
 - The response publishes blocking gaps for missing operator profile, licensed
   operational data, safety case, requirements traceability and manual/procedure
   acceptance.
-- `aeroroute-contracts` publishes the additive OpenAPI 0.7.0 schema.
+- `aeroroute-contracts` publishes the additive OpenAPI 0.8.0 schema.
 - `aeroroute-web` displays the simulator-only operational readiness state and
   top blocking gaps in the main dashboard.

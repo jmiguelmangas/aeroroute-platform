@@ -1,0 +1,119 @@
+{
+  "contract_version": "1.0.0",
+  "evidence_gates": [
+    {
+      "id": "simulator_guardrail",
+      "required_before_ops": true,
+      "status": "present",
+      "title": "Simulator-only API and UI guardrail"
+    },
+    {
+      "id": "operator_profile",
+      "required_before_ops": true,
+      "status": "missing",
+      "title": "Named operator, fleet, jurisdiction and intended use"
+    },
+    {
+      "id": "licensed_operational_data",
+      "required_before_ops": true,
+      "status": "missing",
+      "title": "Licensed operational navdata, weather, NOTAM, restrictions and performance data"
+    },
+    {
+      "id": "safety_case",
+      "required_before_ops": true,
+      "status": "missing",
+      "title": "Accepted safety case and preliminary hazard analysis"
+    },
+    {
+      "id": "requirements_traceability",
+      "required_before_ops": true,
+      "status": "missing",
+      "title": "Requirements-to-test-to-release evidence traceability"
+    },
+    {
+      "id": "manual_acceptance",
+      "required_before_ops": true,
+      "status": "missing",
+      "title": "Operator manuals, procedures, training and backup-process acceptance"
+    },
+    {
+      "id": "independent_validation",
+      "required_before_ops": true,
+      "status": "missing",
+      "title": "Independent operational validation against benchmark cases"
+    }
+  ],
+  "generated_at": "2026-07-08T00:00:00Z",
+  "operational_use_enabled": false,
+  "ops_mode": "simulator",
+  "requirements": [
+    {
+      "blocking_for_operational_use": true,
+      "id": "OPS-REQ-001",
+      "owner_repo": "aeroroute-api",
+      "phase": 15,
+      "status": "implemented",
+      "title": "The only active runtime mode is simulator until operational evidence is accepted.",
+      "verification": [
+        "GET /api/v1/operational-readiness returns active_mode=simulator and operational_use_enabled=false.",
+        "Requested approved_operator_build mode is reported as blocked."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
+      "id": "OPS-REQ-002",
+      "owner_repo": "aeroroute-platform",
+      "phase": 15,
+      "status": "planned",
+      "title": "A named operator profile defines fleet, jurisdiction, intended function and approval path.",
+      "verification": [
+        "Operator profile is reviewed and linked to the operational release evidence pack."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
+      "id": "OPS-REQ-003",
+      "owner_repo": "aeroroute-data",
+      "phase": 16,
+      "status": "planned",
+      "title": "Operational data sources are licensed, versioned, quality-scored and expiry-gated.",
+      "verification": [
+        "Every OFP field cites source, cycle, timestamp, license, validation state and fallback behavior."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
+      "id": "OPS-REQ-004",
+      "owner_repo": "aeroroute-platform",
+      "phase": 15,
+      "status": "planned",
+      "title": "Safety case covers route, fuel, weather, filing, display and AI-explanation failure conditions.",
+      "verification": [
+        "Each hazard has severity, mitigation, verification evidence and release evidence requirements."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
+      "id": "OPS-REQ-005",
+      "owner_repo": "aeroroute-platform",
+      "phase": 19,
+      "status": "planned",
+      "title": "Requirements, hazards, tests, defects and releases are traceable.",
+      "verification": [
+        "Release gate rejects builds with missing traceability links."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
+      "id": "OPS-REQ-006",
+      "owner_repo": "aeroroute-web",
+      "phase": 20,
+      "status": "planned",
+      "title": "Operator manuals, procedures, training and backup process are accepted before operational use.",
+      "verification": [
+        "Approved operator build references accepted manual revision and training evidence."
+      ]
+    }
+  ]
+}

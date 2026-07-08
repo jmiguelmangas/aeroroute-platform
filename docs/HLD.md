@@ -2960,6 +2960,14 @@ blocked until operator profile, licensed data, safety case, requirements
 traceability and manual/procedure acceptance evidence exist. `aeroroute-web`
 surfaces this simulator-only state and blocking gaps on the main dashboard.
 
+Implementation update (8 July 2026): operational readiness evidence is now a
+versioned release artifact. `aeroroute-contracts` defines schemas for readiness
+evidence and hazard logs; `aeroroute-platform` keeps the current baseline in
+`reference/operational-readiness-evidence-2026-07-08.json` and
+`reference/operational-hazard-log-2026-07-08.json`. `make operational-readiness`
+verifies that the baseline remains simulator-only, required gates block
+operational use, and no preliminary hazard is accepted without safety evidence.
+
 ---
 
 # Part III — Testing Strategy
