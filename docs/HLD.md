@@ -2968,6 +2968,15 @@ evidence and hazard logs; `aeroroute-platform` keeps the current baseline in
 verifies that the baseline remains simulator-only, required gates block
 operational use, and no preliminary hazard is accepted without safety evidence.
 
+Implementation update (9 July 2026): Phase 16 adds the certified-data supply
+chain foundation without claiming operational approval. `aeroroute-contracts`
+defines `operational-data-source/v1`; `aeroroute-api` exposes
+`GET /api/v1/operational-data-sources`; and `aeroroute-platform` validates
+`reference/operational-data-sources-2026-07-09.json` with
+`make operational-data-sources`. Missing NOTAM, restriction, terrain/obstacle
+and filing sources fail closed for operational modes; demo navdata, weather,
+airport and performance data remain simulator-only.
+
 ---
 
 # Part III — Testing Strategy

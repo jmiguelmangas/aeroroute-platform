@@ -1,0 +1,175 @@
+{
+  "contract_version": "1.0.0",
+  "generated_at": "2026-07-09T00:00:00Z",
+  "operational_use_enabled": false,
+  "sources": [
+    {
+      "contract_version": "1.0.0",
+      "domain": "navdata",
+      "expires_at": null,
+      "fallback_behavior": "degrade_simulator_only",
+      "license": {
+        "approved_for_operational_use": false,
+        "redistribution_allowed": false,
+        "terms": "Public/demo access; operational-use rights not established."
+      },
+      "operational_ready": false,
+      "quality": {
+        "grade": "public_reference",
+        "validated_at": null,
+        "validation_status": "partial"
+      },
+      "source": "airac.net",
+      "status": "demo_only",
+      "timestamp": null,
+      "version_or_cycle": null
+    },
+    {
+      "contract_version": "1.0.0",
+      "domain": "weather",
+      "expires_at": null,
+      "fallback_behavior": "degrade_simulator_only",
+      "license": {
+        "approved_for_operational_use": false,
+        "redistribution_allowed": true,
+        "terms": "Public/demo weather; not accepted for dispatch release."
+      },
+      "operational_ready": false,
+      "quality": {
+        "grade": "public_reference",
+        "validated_at": null,
+        "validation_status": "partial"
+      },
+      "source": "open-meteo or still-air simulator fallback",
+      "status": "demo_only",
+      "timestamp": null,
+      "version_or_cycle": null
+    },
+    {
+      "contract_version": "1.0.0",
+      "domain": "notam",
+      "expires_at": null,
+      "fallback_behavior": "block_operational_use",
+      "license": {
+        "approved_for_operational_use": false,
+        "redistribution_allowed": false,
+        "terms": "No NOTAM provider configured."
+      },
+      "operational_ready": false,
+      "quality": {
+        "grade": "unknown",
+        "validated_at": null,
+        "validation_status": "not_validated"
+      },
+      "source": "not configured",
+      "status": "missing",
+      "timestamp": null,
+      "version_or_cycle": null
+    },
+    {
+      "contract_version": "1.0.0",
+      "domain": "airspace_restrictions",
+      "expires_at": null,
+      "fallback_behavior": "block_operational_use",
+      "license": {
+        "approved_for_operational_use": false,
+        "redistribution_allowed": false,
+        "terms": "No RAD/ATC/airspace restriction provider configured."
+      },
+      "operational_ready": false,
+      "quality": {
+        "grade": "unknown",
+        "validated_at": null,
+        "validation_status": "not_validated"
+      },
+      "source": "not configured",
+      "status": "missing",
+      "timestamp": null,
+      "version_or_cycle": null
+    },
+    {
+      "contract_version": "1.0.0",
+      "domain": "airport_status",
+      "expires_at": null,
+      "fallback_behavior": "degrade_simulator_only",
+      "license": {
+        "approved_for_operational_use": false,
+        "redistribution_allowed": true,
+        "terms": "Public/demo airport data; live operational status absent."
+      },
+      "operational_ready": false,
+      "quality": {
+        "grade": "public_reference",
+        "validated_at": null,
+        "validation_status": "partial"
+      },
+      "source": "airport bundle plus procedure availability",
+      "status": "demo_only",
+      "timestamp": null,
+      "version_or_cycle": null
+    },
+    {
+      "contract_version": "1.0.0",
+      "domain": "terrain_obstacle",
+      "expires_at": null,
+      "fallback_behavior": "block_operational_use",
+      "license": {
+        "approved_for_operational_use": false,
+        "redistribution_allowed": false,
+        "terms": "No terrain/obstacle provider configured."
+      },
+      "operational_ready": false,
+      "quality": {
+        "grade": "unknown",
+        "validated_at": null,
+        "validation_status": "not_validated"
+      },
+      "source": "not configured",
+      "status": "missing",
+      "timestamp": null,
+      "version_or_cycle": null
+    },
+    {
+      "contract_version": "1.0.0",
+      "domain": "aircraft_performance",
+      "expires_at": null,
+      "fallback_behavior": "degrade_simulator_only",
+      "license": {
+        "approved_for_operational_use": false,
+        "redistribution_allowed": false,
+        "terms": "Educational approximation; not an approved aircraft performance source."
+      },
+      "operational_ready": false,
+      "quality": {
+        "grade": "demo",
+        "validated_at": null,
+        "validation_status": "partial"
+      },
+      "source": "curated educational performance model",
+      "status": "demo_only",
+      "timestamp": null,
+      "version_or_cycle": "simulator-v1"
+    },
+    {
+      "contract_version": "1.0.0",
+      "domain": "filing",
+      "expires_at": null,
+      "fallback_behavior": "block_operational_use",
+      "license": {
+        "approved_for_operational_use": false,
+        "redistribution_allowed": false,
+        "terms": "No filing gateway configured."
+      },
+      "operational_ready": false,
+      "quality": {
+        "grade": "unknown",
+        "validated_at": null,
+        "validation_status": "not_validated"
+      },
+      "source": "not configured",
+      "status": "missing",
+      "timestamp": null,
+      "version_or_cycle": null
+    }
+  ]
+}

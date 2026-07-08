@@ -76,10 +76,22 @@
       "id": "OPS-REQ-003",
       "owner_repo": "aeroroute-data",
       "phase": 16,
-      "status": "planned",
+      "status": "implemented",
       "title": "Operational data sources are licensed, versioned, quality-scored and expiry-gated.",
       "verification": [
-        "Every OFP field cites source, cycle, timestamp, license, validation state and fallback behavior."
+        "The operational-data-source contract captures source, cycle, timestamp, license, validation state and fallback behavior.",
+        "The 2026-07-09 baseline fails closed for every domain that lacks approved operational data."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
+      "id": "OPS-REQ-007",
+      "owner_repo": "aeroroute-api",
+      "phase": 16,
+      "status": "implemented",
+      "title": "Requested operational modes expose data-source blockers instead of silently using simulator data.",
+      "verification": [
+        "GET /api/v1/operational-data-sources returns operational_use_enabled=false and blocking_domains for ops_candidate."
       ]
     },
     {

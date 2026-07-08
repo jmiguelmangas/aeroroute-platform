@@ -110,6 +110,22 @@ Exit gate:
   and fallback behavior; stale or missing operational data blocks operational
   release rather than silently degrading.
 
+Implementation update, 9 July 2026:
+
+- `aeroroute-contracts` publishes the `operational-data-source/v1` schema.
+- `aeroroute-api` exposes `GET /api/v1/operational-data-sources`, which lists
+  all required data domains and keeps `operational_use_enabled=false`.
+- `reference/operational-data-sources-2026-07-09.json` records the current
+  non-operational data-source baseline.
+- `make operational-data-sources` verifies that required data domains exist,
+  missing operational providers fail closed, and no source is mislabeled as
+  operational.
+
+Phase 16 completes the source-contract and blocking-gate foundation. It does
+not mean AeroRoute has licensed operational data; the readiness gate
+`licensed_operational_data` remains blocking until approved suppliers and
+operator rights are configured.
+
 ## Phase 17 — Operational Route And Filing Engine
 
 Goal: generate routes and flight-plan messages that are valid for the intended
@@ -250,6 +266,6 @@ Implementation update, 8 July 2026:
 - The response publishes blocking gaps for missing operator profile, licensed
   operational data, safety case, requirements traceability and manual/procedure
   acceptance.
-- `aeroroute-contracts` publishes the additive OpenAPI 0.8.0 schema.
+- `aeroroute-contracts` publishes the additive OpenAPI 0.9.0 schema.
 - `aeroroute-web` displays the simulator-only operational readiness state and
   top blocking gaps in the main dashboard.
