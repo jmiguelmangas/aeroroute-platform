@@ -86,6 +86,9 @@ Implemented evidence:
   `GET /api/v1/airports/route-support`, returning stable supported,
   unsupported or unavailable states, explicit problem codes and AIRAC cache
   diagnostics before an OFP is generated;
+- `reference/supported-route-coverage-2026-07-08.json` is now the validated
+  supported-route coverage report for Phase 13, covering the four release
+  routes and the required stable problem modes;
 - `reference/flight-plan-scenarios-2026-06-29.json` freezes MAD-JFK, JFK-MAD,
   DXB-MAD and NRT-SFO with real terminal identifiers, alternates and diversion
   minima. DXB-MAD is connected; oceanic gaps remain explicit degraded `DCT`;

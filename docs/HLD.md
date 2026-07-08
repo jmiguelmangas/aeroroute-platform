@@ -2881,6 +2881,11 @@ The response includes AIRAC cycle provenance plus on-demand cache diagnostics
 for airports, runways, procedures, airway memberships and airway details. The
 frontend surfaces this support state beside the runway selector while retaining
 the full OFP generator as the authority for complete or degraded planning.
+`reference/supported-route-coverage-2026-07-08.json` is the versioned coverage
+report for the MVP catalogue release gate and is validated by
+`make route-coverage`. It records the four frozen supported route pairs and the
+stable problem modes required for unsupported, unavailable, and incomplete
+coverage cases.
 
 ### 33.5 Phase 14 — Observability, security, and hardening
 

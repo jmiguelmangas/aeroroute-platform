@@ -1,4 +1,4 @@
-.PHONY: bootstrap format lint typecheck test build check dev-up dev-down integration e2e release-verify verify-live performance-live sbom
+.PHONY: bootstrap format lint typecheck test build check dev-up dev-down integration e2e release-verify route-coverage verify-live performance-live sbom
 
 bootstrap:
 	uv sync --all-groups
@@ -33,6 +33,9 @@ e2e:
 release-verify:
 	uv run python scripts/validate_releases.py RELEASES.yaml
 
+route-coverage:
+	uv run python scripts/validate_route_coverage.py
+
 verify-live:
 	uv run python scripts/verify_live_release.py
 
@@ -42,4 +45,4 @@ performance-live:
 sbom:
 	./scripts/generate_sbom.sh
 
-check: lint typecheck test build release-verify
+check: lint typecheck test build release-verify route-coverage
