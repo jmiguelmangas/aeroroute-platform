@@ -224,3 +224,15 @@ readiness foundation:
 
 Only after those gates exist should route filing, NOTAM, RAD, approved
 performance and operator-specific dispatch workflows be implemented.
+
+Implementation update, 8 July 2026:
+
+- `aeroroute-api` exposes `GET /api/v1/operational-readiness`.
+- `OPS_MODE=simulator` is the only active mode; requested operational modes are
+  reported as blocked and never activate dispatch authority.
+- The response publishes blocking gaps for missing operator profile, licensed
+  operational data, safety case, requirements traceability and manual/procedure
+  acceptance.
+- `aeroroute-contracts` publishes the additive OpenAPI 0.7.0 schema.
+- `aeroroute-web` displays the simulator-only operational readiness state and
+  top blocking gaps in the main dashboard.

@@ -2953,6 +2953,13 @@ Post-MVP phases:
 Until these phases pass for a specific operator, all APIs, UI screens, exports
 and release notes must preserve the non-operational, non-ICAO-fileable boundary.
 
+Implementation update (8 July 2026): the first operational-readiness guardrail
+is active. `aeroroute-api` exposes `GET /api/v1/operational-readiness`, always
+keeps `active_mode=simulator`, and reports requested operational modes as
+blocked until operator profile, licensed data, safety case, requirements
+traceability and manual/procedure acceptance evidence exist. `aeroroute-web`
+surfaces this simulator-only state and blocking gaps on the main dashboard.
+
 ---
 
 # Part III — Testing Strategy
