@@ -2873,6 +2873,15 @@ real runways, SID/STAR, alternates and diversion minima. Infeasible payload/fuel
 combinations return an actionable mass-profile problem instead of a generic
 provider failure.
 
+Implementation update (8 July 2026): the API exposes
+`GET /api/v1/airports/route-support` as a non-mutating preflight check for
+catalogue route coverage. It distinguishes unsupported airports, AIRAC provider
+unavailability, and missing runway/procedure coverage before OFP generation.
+The response includes AIRAC cycle provenance plus on-demand cache diagnostics
+for airports, runways, procedures, airway memberships and airway details. The
+frontend surfaces this support state beside the runway selector while retaining
+the full OFP generator as the authority for complete or degraded planning.
+
 ### 33.5 Phase 14 — Observability, security, and hardening
 
 **Owning repositories:** each service owns local instrumentation and security; `aeroroute-platform` owns dashboards, runbooks, integration load tests, and release verification.

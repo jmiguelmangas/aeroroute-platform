@@ -82,6 +82,10 @@ Implemented evidence:
 - AIRAC caches expire after six hours, record observed cycles, load corridor
   data on demand and enforce configurable request concurrency and timeout.
   Navigation snapshots persist source, cycles, route status and loading mode;
+- route support preflight is now exposed through
+  `GET /api/v1/airports/route-support`, returning stable supported,
+  unsupported or unavailable states, explicit problem codes and AIRAC cache
+  diagnostics before an OFP is generated;
 - `reference/flight-plan-scenarios-2026-06-29.json` freezes MAD-JFK, JFK-MAD,
   DXB-MAD and NRT-SFO with real terminal identifiers, alternates and diversion
   minima. DXB-MAD is connected; oceanic gaps remain explicit degraded `DCT`;
