@@ -5,6 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 import json
 import math
 from time import perf_counter
+from urllib.error import HTTPError, URLError
 from urllib.request import urlopen
 
 
@@ -32,8 +33,7 @@ def measure(url: str, requests: int, concurrency: int) -> list[float]:
 
 
 def check(base_url: str, requests: int, concurrency: int) -> None:
-    with urlopen(f"{base_url}/api/v1/flight-plans", timeout=5) as response:
-        plans = json.load(response)
+    plans = _json_get(f"{base_url}/api/v1/flight-plans")
     if not plans:
         raise RuntimeError("at least one stored flight plan is required")
     cases = [
@@ -57,17 +57,46 @@ def check(base_url: str, requests: int, concurrency: int) -> None:
             raise RuntimeError(f"{name} exceeded P95 budget")
 
 
+def _json_get(url: str) -> list[dict[str, object]]:
+    try:
+        with urlopen(url, timeout=5) as response:
+            return json.load(response)
+    except HTTPError as error:
+        detail = error.read().decode(errors="replace")
+        try:
+            payload = json.loads(detail)
+        except json.JSONDecodeError:
+            payload = {}
+        if (
+            isinstance(payload, dict)
+            and payload.get("code") == "database_unavailable"
+        ):
+            raise RuntimeError(
+                "performance-live requires PostGIS. Start it with "
+                "`make dev-up` in aeroroute-platform and run "
+                "`uv run alembic upgrade head` in aeroroute-api first."
+            ) from None
+        raise RuntimeError(f"GET {url} failed: {error.code} {detail}") from None
+    except URLError as error:
+        raise RuntimeError(
+            "performance-live requires aeroroute-api to be reachable."
+        ) from error
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-url", default="http://127.0.0.1:8000")
     parser.add_argument("--requests", type=int, default=30)
     parser.add_argument("--concurrency", type=int, default=6)
     arguments = parser.parse_args()
-    check(
-        arguments.base_url.rstrip("/"),
-        arguments.requests,
-        arguments.concurrency,
-    )
+    try:
+        check(
+            arguments.base_url.rstrip("/"),
+            arguments.requests,
+            arguments.concurrency,
+        )
+    except RuntimeError as error:
+        raise SystemExit(str(error)) from None
 
 
 if __name__ == "__main__":

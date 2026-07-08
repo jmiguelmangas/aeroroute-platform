@@ -1,6 +1,9 @@
 import pytest
 
-from scripts.verify_live_release import validate_scenario
+from scripts.verify_live_release import (
+    _raise_actionable_http_error,
+    validate_scenario,
+)
 
 
 def _fixture() -> tuple[dict[str, object], dict[str, object]]:
@@ -47,3 +50,13 @@ def test_live_release_validator_rejects_terminal_regression() -> None:
 
     with pytest.raises(AssertionError, match="expected sid"):
         validate_scenario(scenario, document, "2606")
+
+
+def test_live_release_reports_database_prerequisite() -> None:
+    with pytest.raises(RuntimeError, match="Start PostGIS"):
+        _raise_actionable_http_error(
+            "POST",
+            "http://127.0.0.1:8000/api/v1/flight-plans",
+            503,
+            '{"code":"database_unavailable"}',
+        )

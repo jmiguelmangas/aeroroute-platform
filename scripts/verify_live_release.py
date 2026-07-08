@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 from typing import Any
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -95,21 +95,56 @@ def _json_request(
             return json.load(response)
     except HTTPError as error:
         detail = error.read().decode(errors="replace")
+        _raise_actionable_http_error(method, url, error.code, detail)
+    except URLError as error:
         raise RuntimeError(
-            f"{method} {url} failed: {error.code} {detail}"
+            f"{method} {url} failed: API is not reachable. "
+            "Start aeroroute-api before running verify-live."
         ) from error
 
 
 def _bytes_request(url: str) -> bytes:
-    with urlopen(url, timeout=30) as response:
-        return response.read()
+    try:
+        with urlopen(url, timeout=30) as response:
+            return response.read()
+    except HTTPError as error:
+        detail = error.read().decode(errors="replace")
+        _raise_actionable_http_error("GET", url, error.code, detail)
+    except URLError as error:
+        raise RuntimeError(
+            f"GET {url} failed: API is not reachable. "
+            "Start aeroroute-api before running verify-live."
+        ) from error
+
+
+def _raise_actionable_http_error(
+    method: str, url: str, status_code: int, detail: str
+) -> None:
+    message = f"{method} {url} failed: {status_code} {detail}"
+    try:
+        payload = json.loads(detail)
+    except json.JSONDecodeError:
+        payload = {}
+    if (
+        isinstance(payload, dict)
+        and payload.get("code") == "database_unavailable"
+    ):
+        message = (
+            f"{method} {url} failed: database_unavailable. "
+            "Start PostGIS with `make dev-up` in aeroroute-platform and run "
+            "`uv run alembic upgrade head` in aeroroute-api before verify-live."
+        )
+    raise RuntimeError(message) from None
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-url", default="http://127.0.0.1:8000")
     arguments = parser.parse_args()
-    verify(arguments.base_url.rstrip("/"))
+    try:
+        verify(arguments.base_url.rstrip("/"))
+    except RuntimeError as error:
+        raise SystemExit(str(error)) from None
 
 
 if __name__ == "__main__":
