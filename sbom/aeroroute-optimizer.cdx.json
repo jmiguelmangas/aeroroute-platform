@@ -1,0 +1,46 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "geographiclib-2@2.1",
+      "name": "geographiclib",
+      "purl": "pkg:pypi/geographiclib@2.1",
+      "type": "library",
+      "version": "2.1"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "geographiclib-2@2.1"
+      ],
+      "ref": "aeroroute-optimizer-1@0.2.1"
+    },
+    {
+      "ref": "geographiclib-2@2.1"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "aeroroute-optimizer-1@0.2.1",
+      "name": "aeroroute-optimizer",
+      "properties": [
+        {
+          "name": "uv:package:is_project_root",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.2.1"
+    },
+    "tools": [
+      {
+        "name": "uv",
+        "vendor": "Astral Software Inc.",
+        "version": "0.11.24"
+      }
+    ]
+  },
+  "specVersion": "1.5",
+  "version": 1
+}

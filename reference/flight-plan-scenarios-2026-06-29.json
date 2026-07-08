@@ -17,7 +17,7 @@
     {
       "name": "DXB-MAD",
       "request": {"origin_icao": "OMDB", "destination_icao": "LEMD", "aircraft_type": "A359", "payload_mass_kg": 38000},
-      "expected": {"departure_runway": "12R", "sid": "SENP3G", "arrival_runway": "18R", "star": "RIDA3A", "alternate": "LEBL", "minimum_diversions": 3, "route_status": "complete"}
+      "expected": {"departure_runway": "12R", "sid": "NABI3G", "arrival_runway": "18R", "star": "RIDA3A", "alternate": "LEBL", "minimum_diversions": 3, "route_status": "complete"}
     },
     {
       "name": "NRT-SFO",

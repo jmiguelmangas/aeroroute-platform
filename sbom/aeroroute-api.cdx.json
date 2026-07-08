@@ -1,0 +1,465 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "aeroroute-optimizer-2@0.2.1",
+      "name": "aeroroute-optimizer",
+      "type": "library",
+      "version": "0.2.1"
+    },
+    {
+      "bom-ref": "alembic-3@1.18.4",
+      "name": "alembic",
+      "purl": "pkg:pypi/alembic@1.18.4",
+      "type": "library",
+      "version": "1.18.4"
+    },
+    {
+      "bom-ref": "annotated-doc-4@0.0.4",
+      "name": "annotated-doc",
+      "purl": "pkg:pypi/annotated-doc@0.0.4",
+      "type": "library",
+      "version": "0.0.4"
+    },
+    {
+      "bom-ref": "annotated-types-5@0.7.0",
+      "name": "annotated-types",
+      "purl": "pkg:pypi/annotated-types@0.7.0",
+      "type": "library",
+      "version": "0.7.0"
+    },
+    {
+      "bom-ref": "anyio-6@4.14.0",
+      "name": "anyio",
+      "purl": "pkg:pypi/anyio@4.14.0",
+      "type": "library",
+      "version": "4.14.0"
+    },
+    {
+      "bom-ref": "asyncpg-7@0.31.0",
+      "name": "asyncpg",
+      "purl": "pkg:pypi/asyncpg@0.31.0",
+      "type": "library",
+      "version": "0.31.0"
+    },
+    {
+      "bom-ref": "certifi-8@2026.6.17",
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi@2026.6.17",
+      "type": "library",
+      "version": "2026.6.17"
+    },
+    {
+      "bom-ref": "charset-normalizer-9@3.4.7",
+      "name": "charset-normalizer",
+      "purl": "pkg:pypi/charset-normalizer@3.4.7",
+      "type": "library",
+      "version": "3.4.7"
+    },
+    {
+      "bom-ref": "click-10@8.4.1",
+      "name": "click",
+      "purl": "pkg:pypi/click@8.4.1",
+      "type": "library",
+      "version": "8.4.1"
+    },
+    {
+      "bom-ref": "colorama-11@0.4.6",
+      "name": "colorama",
+      "properties": [
+        {
+          "name": "uv:package:marker",
+          "value": "sys_platform == 'win32'"
+        }
+      ],
+      "purl": "pkg:pypi/colorama@0.4.6",
+      "type": "library",
+      "version": "0.4.6"
+    },
+    {
+      "bom-ref": "fastapi-12@0.138.0",
+      "name": "fastapi",
+      "purl": "pkg:pypi/fastapi@0.138.0",
+      "type": "library",
+      "version": "0.138.0"
+    },
+    {
+      "bom-ref": "geoalchemy2-13@0.20.0",
+      "name": "geoalchemy2",
+      "purl": "pkg:pypi/geoalchemy2@0.20.0",
+      "type": "library",
+      "version": "0.20.0"
+    },
+    {
+      "bom-ref": "geographiclib-14@2.1",
+      "name": "geographiclib",
+      "purl": "pkg:pypi/geographiclib@2.1",
+      "type": "library",
+      "version": "2.1"
+    },
+    {
+      "bom-ref": "greenlet-15@3.5.2",
+      "name": "greenlet",
+      "purl": "pkg:pypi/greenlet@3.5.2",
+      "type": "library",
+      "version": "3.5.2"
+    },
+    {
+      "bom-ref": "h11-16@0.16.0",
+      "name": "h11",
+      "purl": "pkg:pypi/h11@0.16.0",
+      "type": "library",
+      "version": "0.16.0"
+    },
+    {
+      "bom-ref": "httpcore-17@1.0.9",
+      "name": "httpcore",
+      "purl": "pkg:pypi/httpcore@1.0.9",
+      "type": "library",
+      "version": "1.0.9"
+    },
+    {
+      "bom-ref": "httpx-18@0.28.1",
+      "name": "httpx",
+      "purl": "pkg:pypi/httpx@0.28.1",
+      "type": "library",
+      "version": "0.28.1"
+    },
+    {
+      "bom-ref": "idna-19@3.18",
+      "name": "idna",
+      "purl": "pkg:pypi/idna@3.18",
+      "type": "library",
+      "version": "3.18"
+    },
+    {
+      "bom-ref": "mako-20@1.3.12",
+      "name": "mako",
+      "purl": "pkg:pypi/mako@1.3.12",
+      "type": "library",
+      "version": "1.3.12"
+    },
+    {
+      "bom-ref": "markupsafe-21@3.0.3",
+      "name": "markupsafe",
+      "purl": "pkg:pypi/markupsafe@3.0.3",
+      "type": "library",
+      "version": "3.0.3"
+    },
+    {
+      "bom-ref": "packaging-22@26.2",
+      "name": "packaging",
+      "purl": "pkg:pypi/packaging@26.2",
+      "type": "library",
+      "version": "26.2"
+    },
+    {
+      "bom-ref": "pillow-23@12.2.0",
+      "name": "pillow",
+      "purl": "pkg:pypi/pillow@12.2.0",
+      "type": "library",
+      "version": "12.2.0"
+    },
+    {
+      "bom-ref": "psycopg-24@3.3.4",
+      "name": "psycopg",
+      "purl": "pkg:pypi/psycopg@3.3.4",
+      "type": "library",
+      "version": "3.3.4"
+    },
+    {
+      "bom-ref": "psycopg-binary-25@3.3.4",
+      "name": "psycopg-binary",
+      "properties": [
+        {
+          "name": "uv:package:marker",
+          "value": "implementation_name != 'pypy'"
+        }
+      ],
+      "purl": "pkg:pypi/psycopg-binary@3.3.4",
+      "type": "library",
+      "version": "3.3.4"
+    },
+    {
+      "bom-ref": "pydantic-26@2.13.4",
+      "name": "pydantic",
+      "purl": "pkg:pypi/pydantic@2.13.4",
+      "type": "library",
+      "version": "2.13.4"
+    },
+    {
+      "bom-ref": "pydantic-core-27@2.46.4",
+      "name": "pydantic-core",
+      "purl": "pkg:pypi/pydantic-core@2.46.4",
+      "type": "library",
+      "version": "2.46.4"
+    },
+    {
+      "bom-ref": "reportlab-28@5.0.0",
+      "name": "reportlab",
+      "purl": "pkg:pypi/reportlab@5.0.0",
+      "type": "library",
+      "version": "5.0.0"
+    },
+    {
+      "bom-ref": "sqlalchemy-29@2.0.51",
+      "name": "sqlalchemy",
+      "purl": "pkg:pypi/sqlalchemy@2.0.51",
+      "type": "library",
+      "version": "2.0.51"
+    },
+    {
+      "bom-ref": "starlette-30@1.3.1",
+      "name": "starlette",
+      "purl": "pkg:pypi/starlette@1.3.1",
+      "type": "library",
+      "version": "1.3.1"
+    },
+    {
+      "bom-ref": "typing-extensions-31@4.15.0",
+      "name": "typing-extensions",
+      "purl": "pkg:pypi/typing-extensions@4.15.0",
+      "type": "library",
+      "version": "4.15.0"
+    },
+    {
+      "bom-ref": "typing-inspection-32@0.4.2",
+      "name": "typing-inspection",
+      "purl": "pkg:pypi/typing-inspection@0.4.2",
+      "type": "library",
+      "version": "0.4.2"
+    },
+    {
+      "bom-ref": "tzdata-33@2026.2",
+      "name": "tzdata",
+      "properties": [
+        {
+          "name": "uv:package:marker",
+          "value": "sys_platform == 'win32'"
+        }
+      ],
+      "purl": "pkg:pypi/tzdata@2026.2",
+      "type": "library",
+      "version": "2026.2"
+    },
+    {
+      "bom-ref": "uvicorn-34@0.49.0",
+      "name": "uvicorn",
+      "purl": "pkg:pypi/uvicorn@0.49.0",
+      "type": "library",
+      "version": "0.49.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "aeroroute-optimizer-2@0.2.1",
+        "alembic-3@1.18.4",
+        "asyncpg-7@0.31.0",
+        "fastapi-12@0.138.0",
+        "geoalchemy2-13@0.20.0",
+        "greenlet-15@3.5.2",
+        "httpx-18@0.28.1",
+        "psycopg-24@3.3.4",
+        "reportlab-28@5.0.0",
+        "sqlalchemy-29@2.0.51",
+        "uvicorn-34@0.49.0"
+      ],
+      "ref": "aeroroute-api-1@0.5.0"
+    },
+    {
+      "dependsOn": [
+        "geographiclib-14@2.1"
+      ],
+      "ref": "aeroroute-optimizer-2@0.2.1"
+    },
+    {
+      "dependsOn": [
+        "mako-20@1.3.12",
+        "sqlalchemy-29@2.0.51",
+        "typing-extensions-31@4.15.0"
+      ],
+      "ref": "alembic-3@1.18.4"
+    },
+    {
+      "ref": "annotated-doc-4@0.0.4"
+    },
+    {
+      "ref": "annotated-types-5@0.7.0"
+    },
+    {
+      "dependsOn": [
+        "idna-19@3.18",
+        "typing-extensions-31@4.15.0"
+      ],
+      "ref": "anyio-6@4.14.0"
+    },
+    {
+      "ref": "asyncpg-7@0.31.0"
+    },
+    {
+      "ref": "certifi-8@2026.6.17"
+    },
+    {
+      "ref": "charset-normalizer-9@3.4.7"
+    },
+    {
+      "dependsOn": [
+        "colorama-11@0.4.6"
+      ],
+      "ref": "click-10@8.4.1"
+    },
+    {
+      "ref": "colorama-11@0.4.6"
+    },
+    {
+      "dependsOn": [
+        "annotated-doc-4@0.0.4",
+        "pydantic-26@2.13.4",
+        "starlette-30@1.3.1",
+        "typing-extensions-31@4.15.0",
+        "typing-inspection-32@0.4.2"
+      ],
+      "ref": "fastapi-12@0.138.0"
+    },
+    {
+      "dependsOn": [
+        "packaging-22@26.2",
+        "sqlalchemy-29@2.0.51"
+      ],
+      "ref": "geoalchemy2-13@0.20.0"
+    },
+    {
+      "ref": "geographiclib-14@2.1"
+    },
+    {
+      "ref": "greenlet-15@3.5.2"
+    },
+    {
+      "ref": "h11-16@0.16.0"
+    },
+    {
+      "dependsOn": [
+        "certifi-8@2026.6.17",
+        "h11-16@0.16.0"
+      ],
+      "ref": "httpcore-17@1.0.9"
+    },
+    {
+      "dependsOn": [
+        "anyio-6@4.14.0",
+        "certifi-8@2026.6.17",
+        "httpcore-17@1.0.9",
+        "idna-19@3.18"
+      ],
+      "ref": "httpx-18@0.28.1"
+    },
+    {
+      "ref": "idna-19@3.18"
+    },
+    {
+      "dependsOn": [
+        "markupsafe-21@3.0.3"
+      ],
+      "ref": "mako-20@1.3.12"
+    },
+    {
+      "ref": "markupsafe-21@3.0.3"
+    },
+    {
+      "ref": "packaging-22@26.2"
+    },
+    {
+      "ref": "pillow-23@12.2.0"
+    },
+    {
+      "dependsOn": [
+        "psycopg-binary-25@3.3.4",
+        "typing-extensions-31@4.15.0",
+        "tzdata-33@2026.2"
+      ],
+      "ref": "psycopg-24@3.3.4"
+    },
+    {
+      "ref": "psycopg-binary-25@3.3.4"
+    },
+    {
+      "dependsOn": [
+        "annotated-types-5@0.7.0",
+        "pydantic-core-27@2.46.4",
+        "typing-extensions-31@4.15.0",
+        "typing-inspection-32@0.4.2"
+      ],
+      "ref": "pydantic-26@2.13.4"
+    },
+    {
+      "dependsOn": [
+        "typing-extensions-31@4.15.0"
+      ],
+      "ref": "pydantic-core-27@2.46.4"
+    },
+    {
+      "dependsOn": [
+        "charset-normalizer-9@3.4.7",
+        "pillow-23@12.2.0"
+      ],
+      "ref": "reportlab-28@5.0.0"
+    },
+    {
+      "dependsOn": [
+        "greenlet-15@3.5.2",
+        "typing-extensions-31@4.15.0"
+      ],
+      "ref": "sqlalchemy-29@2.0.51"
+    },
+    {
+      "dependsOn": [
+        "anyio-6@4.14.0",
+        "typing-extensions-31@4.15.0"
+      ],
+      "ref": "starlette-30@1.3.1"
+    },
+    {
+      "ref": "typing-extensions-31@4.15.0"
+    },
+    {
+      "dependsOn": [
+        "typing-extensions-31@4.15.0"
+      ],
+      "ref": "typing-inspection-32@0.4.2"
+    },
+    {
+      "ref": "tzdata-33@2026.2"
+    },
+    {
+      "dependsOn": [
+        "click-10@8.4.1",
+        "h11-16@0.16.0"
+      ],
+      "ref": "uvicorn-34@0.49.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "aeroroute-api-1@0.5.0",
+      "name": "aeroroute-api",
+      "properties": [
+        {
+          "name": "uv:package:is_project_root",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.5.0"
+    },
+    "tools": [
+      {
+        "name": "uv",
+        "vendor": "Astral Software Inc.",
+        "version": "0.11.24"
+      }
+    ]
+  },
+  "specVersion": "1.5",
+  "version": 1
+}

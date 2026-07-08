@@ -10,9 +10,9 @@ Date: 2026-06-27
 
 ## Version 6 delivery update — 29 June 2026
 
-Expanded-MVP progress is **93%**. Phases 10 through 13 are complete; the next
-implementation phase is Phase 14 observability, security, performance and
-release hardening.
+Expanded-MVP progress is **100%** for release `1.0.0-mvp`. Phases 10 through 14
+are complete. Organization license selection and GitHub branch-protection
+settings remain external governance actions, not missing MVP implementation.
 
 Implemented evidence:
 
@@ -88,6 +88,22 @@ Implemented evidence:
 - infeasible NRT-SFO B788 payload/fuel returns stable
   `422 aircraft_mass_outside_profile`; a feasible payload produces a traced OFP
   with GULBO2, STINS4, KLAX and CYVR.
+- HTTP middleware emits redacted JSON request events with `X-Request-ID`, route
+  templates, status and duration; `/metrics` exposes low-cardinality counters
+  and duration sums, while provider health reports observed AIRAC cycles and
+  cache policy;
+- 1 MiB request limits, per-client fixed-window rate limiting, bounded AIRAC
+  concurrency/timeouts and defensive response headers are tested;
+- 30-second active-catalogue caching and 128-entry immutable OFP caching reduce
+  local P95 to 8.86 ms for airport search and 9.38 ms for OFP reads, below 150
+  ms and 200 ms budgets respectively;
+- `make verify-live` passes all four frozen OFPs, snapshot reloads and PDF
+  signatures. `make performance-live` enforces the local budgets;
+- six normalized CycloneDX SBOMs and the frontend production-license inventory
+  reproduce byte-for-byte. Python `pip-audit` and npm production audit report
+  no known vulnerabilities;
+- `docs/OPERATIONS_RUNBOOK.md` covers startup, backup, restore drill, provider
+  degradation, dependency review and request-ID incident triage.
 
 Deferred to Phase 13 hardening/generalization:
 
@@ -95,12 +111,13 @@ Deferred to Phase 13 hardening/generalization:
 - replacement of remaining `DCT` legs only when a versioned source proves
   connectivity; existing degraded output remains the safe fallback.
 
-Current Phase 13 verification: optimizer 60 tests with 90.19% coverage, API 64
-collected tests (63 passed, 1 skipped), web 13 unit/component tests, 7
+Current Phase 14 verification: optimizer 60 tests with 90.19% coverage, API 68
+collected tests (67 passed, 1 skipped), web 14 unit/component tests, 7
 mocked Playwright journeys, 1 real-stack journey, contracts 4 tests, and data 5
-tests. Platform has 3 tests including the four-route release manifest.
-Generated-client freshness, production/Storybook builds, migration 0007, OFP
-idempotency, snapshot reload, PDF rendering and live route acceptance passed.
+tests. Platform has 8 tests covering release fixtures, live validation helpers,
+performance math, SBOM normalization and release manifests. Generated-client
+freshness, production/Storybook builds, migration 0007, PDF visual review,
+security audits, live release verification and performance budgets passed.
 
 This checkpoint compares the current eight-repository workspace with HLD phases
 0 through 10. A phase is marked complete only when its implementation and its
@@ -112,7 +129,7 @@ earlier phase.
 The product has a complete Phase 9 user journey and a complete Version 6 Phase
 10 terminal-navigation slice over the deterministic API and database stack.
 Phase 0 governance and the optional Phase 8/8B model work remain independently
-open; they do not block beginning Phase 14 hardening.
+open as optional model/governance tracks; they do not block the completed MVP.
 
 | Phase | Status | Implemented evidence | Remaining acceptance work |
 | --- | --- | --- | --- |
@@ -131,6 +148,7 @@ open; they do not block beginning Phase 14 hardening.
 | 11. Fuel, alternates and diversions | Complete | Versioned simplified EASA arithmetic, bounded full-mass reconciliation, editable/suggested runway-compatible destination alternate, AIRAC-sourced diversion candidates, additive OpenAPI fields, persistence and frontend review views pass unit and real-stack verification. | The direct-distance alternate estimate remains educational. Weather minima, NOTAM, airport status, ETOPS/EDTO and dispatch approval remain explicitly outside scope. |
 | 12. OFP workflow and frontend | Complete | Immutable flight-plan snapshots, callsign/payload-aware creation, coded route, navlog, fuel/mass, terminal navigation, alternates/diversions, saved-plan history, map and non-operational JSON/PDF exports pass mocked and real-stack verification. | Exports are educational artifacts only and intentionally cannot be submitted as ICAO FPL. |
 | 13. Supported-route generalization | Complete | Active catalogue snapshots, bounded on-demand AIRAC loading, cycle/status manifests, stable mass errors and four frozen live reference routes cover the supported MVP catalogue with complete or explicit degraded output. | Expanding beyond the 45-airport catalogue remains post-MVP; no invented identifiers or silent fallback are permitted. |
+| 14. Observability, security and hardening | Complete | Structured correlated logs, metrics, provider manifests, request/rate limits, defensive headers, immutable read caches, measured P95 budgets, live four-route verification, reproducible SBOMs, clean dependency audits and operations runbook support release `1.0.0-mvp`. | Continue dependency review, restore drills and performance observation after every release; this does not grant operational approval. |
 
 ## Verification evidence
 
@@ -140,15 +158,15 @@ outside the external volume to avoid AppleDouble metadata interference.
 | Repository | Result |
 | --- | --- |
 | `aeroroute-optimizer` | Ruff, mypy, 60 tests and 90.18% coverage passed, including simplified EASA fuel arithmetic and aircraft planning assumptions. |
-| `aeroroute-api` | Ruff, 64 collected tests including active snapshots, TTL/cycle AIRAC cache, bounded provider access, immutable flight plans, payload mass, PDF rendering, PostGIS lifecycle and stable errors; 63 passed and 1 optional integration test skipped. |
+| `aeroroute-api` | Ruff, 68 collected tests including observability, security headers, rate/request limits, active snapshots, TTL/cycle AIRAC cache, immutable flight plans, PDF rendering, PostGIS lifecycle and stable errors; 67 passed and 1 optional integration test skipped. |
 | `aeroroute-data` | Ruff, 5 tests and deterministic 45-airport bundle passed. |
 | `aeroroute-mlx` | Ruff, 12 tests, sdist and wheel passed. MLX 0.31.2 and MLX-LM 0.31.3 loaded the local Gemma 3 4B checkpoint; 3/3 native generations passed schema, numeric and operational-claim validation. |
 | `aeroroute-mlx-training` | Ruff, 6 tests, sdist and wheel passed. No training run was performed. |
-| `aeroroute-web` | ESLint/Prettier, TypeScript, generated-client freshness, 13 unit/component tests, production build, Storybook build, 7 mocked Playwright tests and 1 real-stack Playwright test passed. |
+| `aeroroute-web` | ESLint/Prettier, TypeScript, generated-client freshness, 14 unit/component tests, production build, Storybook build, 7 mocked Playwright tests and 1 real-stack Playwright test passed. |
 | `aeroroute-contracts` | Four standard-library tests, four validated JSON/OpenAPI documents and a versioned ZIP build passed. |
-| `aeroroute-platform` | Ruff, 3 tests, four-route reference manifest, Compose configuration and release-manifest validation passed through `make check`. |
+| `aeroroute-platform` | Ruff, 8 tests, four-route live verifier, P95 budget runner, reproducible SBOM inventory, operations runbook, Compose and release-manifest validation passed. |
 
-Total automated checks observed: 175, including 8 Playwright journeys.
+Total automated checks observed: 185, including 8 Playwright journeys.
 
 ## Required closure sequence
 
@@ -157,8 +175,9 @@ Total automated checks observed: 175, including 8 Playwright journeys.
 2. Record native Phase 8 baselines. Keep Phase 8B unpromoted unless those
    baselines justify training.
 3. Keep the completed Phase 9/10 real-stack journeys in release verification.
-4. Implement Phase 14 observability, security, performance and release
-   hardening next.
+4. Preserve the frozen scenarios and non-operational boundary for every future
+   change; treat broader data coverage and operational certification as new
+   product scopes, not silent extensions of this MVP.
 
 ## Git hygiene decision
 

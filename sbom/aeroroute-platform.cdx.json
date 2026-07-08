@@ -1,0 +1,46 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pyyaml-2@6.0.3",
+      "name": "pyyaml",
+      "purl": "pkg:pypi/pyyaml@6.0.3",
+      "type": "library",
+      "version": "6.0.3"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pyyaml-2@6.0.3"
+      ],
+      "ref": "aeroroute-platform-tools-1@0.1.0"
+    },
+    {
+      "ref": "pyyaml-2@6.0.3"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "aeroroute-platform-tools-1@0.1.0",
+      "name": "aeroroute-platform-tools",
+      "properties": [
+        {
+          "name": "uv:package:is_project_root",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "uv",
+        "vendor": "Astral Software Inc.",
+        "version": "0.11.24"
+      }
+    ]
+  },
+  "specVersion": "1.5",
+  "version": 1
+}

@@ -1,0 +1,32 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [],
+  "dependencies": [
+    {
+      "ref": "aeroroute-data-1@0.1.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "aeroroute-data-1@0.1.0",
+      "name": "aeroroute-data",
+      "properties": [
+        {
+          "name": "uv:package:is_project_root",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "uv",
+        "vendor": "Astral Software Inc.",
+        "version": "0.11.24"
+      }
+    ]
+  },
+  "specVersion": "1.5",
+  "version": 1
+}

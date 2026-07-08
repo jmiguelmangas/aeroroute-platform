@@ -2888,6 +2888,16 @@ Local load scenario: 5 concurrent users and 20 flight-plan requests over five mi
 
 Acceptance: the release workflow reproduces frozen OFPs, passes all reference scenarios and degraded modes, and preserves the non-operational boundary. Completion target: 100%.
 
+Implementation status (29 June 2026): complete for release `1.0.0-mvp`.
+Low-cardinality Prometheus metrics, JSON request logs correlated by
+`X-Request-ID`, effective provider manifests, defensive headers, request-size
+limits and local rate limiting are active. Immutable catalogue and OFP caches
+meet local P95 budgets. The release verifier reproduces four frozen scenarios,
+reloads every snapshot and validates every PDF. Normalized CycloneDX SBOMs,
+frontend license inventory, dependency audits and a backup/restore/degradation
+runbook complete the local release evidence. This does not alter the mandatory
+non-operational boundary.
+
 ---
 
 # Part III — Testing Strategy
