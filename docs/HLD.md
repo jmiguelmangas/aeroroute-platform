@@ -2912,6 +2912,12 @@ frontend license inventory, dependency audits and a backup/restore/degradation
 runbook complete the local release evidence. This does not alter the mandatory
 non-operational boundary.
 
+`make phase14-release` is the local hardening gate for this evidence. It
+validates the release manifest, frozen scenario catalogue, supported-route
+coverage, stable degraded-provider problem modes, SBOM/license inventory,
+operations runbook, live verifier and performance-budget tooling. `make check`
+runs the same gate so release evidence cannot drift silently.
+
 ---
 
 # Part III — Testing Strategy
