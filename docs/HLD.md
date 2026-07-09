@@ -2993,6 +2993,14 @@ Dispatch release remains disabled until approved performance data, fuel policy,
 runway/weight/balance limits, minima/alternate suitability and signoff evidence
 exist.
 
+Implementation update (9 July 2026): Phase 19 adds assurance-readiness gates.
+`aeroroute-contracts` defines `assurance-readiness/v1`; `aeroroute-api` exposes
+`GET /api/v1/assurance-readiness`; and `aeroroute-platform` validates
+`reference/assurance-readiness-2026-07-09.json` with
+`make assurance-readiness`. Operational assurance remains disabled until
+traceability, IV&V, release/data-cycle control, audit/SLO observability,
+security/incident response and fallback procedures are accepted.
+
 ---
 
 # Part III — Testing Strategy

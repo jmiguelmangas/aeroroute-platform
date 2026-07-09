@@ -1,0 +1,39 @@
+{
+  "assurance_enabled": false,
+  "baseline": "assurance-readiness-2026-07-09",
+  "contract_version": "1.0.0",
+  "gates": [
+    {
+      "id": "requirements_traceability",
+      "status": "missing",
+      "title": "Requirements-to-test traceability"
+    },
+    {
+      "id": "independent_validation",
+      "status": "missing",
+      "title": "Independent verification and validation"
+    },
+    {
+      "id": "release_data_cycle_control",
+      "status": "missing",
+      "title": "Release and data-cycle control"
+    },
+    {
+      "id": "audit_slo_observability",
+      "status": "missing",
+      "title": "Audit logs, SLOs and observability"
+    },
+    {
+      "id": "security_incident_response",
+      "status": "missing",
+      "title": "Security and incident response"
+    },
+    {
+      "id": "fallback_procedures",
+      "status": "missing",
+      "title": "Fallback and backup procedures"
+    }
+  ],
+  "operational_use_enabled": false,
+  "status": "blocked"
+}

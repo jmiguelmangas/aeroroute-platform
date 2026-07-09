@@ -220,6 +220,20 @@ Exit gate:
 - a failed dependency, stale cycle, bad calculation, unavailable filing path or
   AI service outage cannot produce an approved dispatch artifact.
 
+Implementation update, 9 July 2026:
+
+- `aeroroute-contracts` publishes the `assurance-readiness/v1` schema.
+- `aeroroute-api` exposes `GET /api/v1/assurance-readiness`, which keeps
+  `assurance_enabled=false`.
+- `reference/assurance-readiness-2026-07-09.json` and
+  `make assurance-readiness` verify that operational assurance remains blocked
+  until requirements traceability, IV&V, release/data-cycle control, audit/SLO
+  observability, security/incident response and fallback procedures are
+  accepted.
+
+Phase 19 completes the assurance-readiness gate only. It does not establish an
+operator-approved quality management or safety assurance process.
+
 ## Phase 20 — Operator Approval And Controlled Rollout
 
 Goal: deploy only through an operator-approved operational procedure.

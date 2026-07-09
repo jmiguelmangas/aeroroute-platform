@@ -134,10 +134,11 @@
       "id": "OPS-REQ-005",
       "owner_repo": "aeroroute-platform",
       "phase": 19,
-      "status": "planned",
+      "status": "implemented",
       "title": "Requirements, hazards, tests, defects and releases are traceable.",
       "verification": [
-        "Release gate rejects builds with missing traceability links."
+        "GET /api/v1/assurance-readiness returns assurance_enabled=false and missing traceability gates.",
+        "The 2026-07-09 assurance baseline rejects assurance enablement."
       ]
     },
     {
