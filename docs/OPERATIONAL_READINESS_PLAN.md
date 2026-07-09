@@ -254,6 +254,19 @@ Exit gate:
   approval path. Until then, UI, API and exports continue to show
   non-operational limitations.
 
+Implementation update, 9 July 2026:
+
+- `aeroroute-contracts` publishes the `operator-approval-readiness/v1` schema.
+- `aeroroute-api` exposes `GET /api/v1/operator-approval-readiness`, which
+  keeps `ops_mode=simulator` and `operator_approval_enabled=false`.
+- `reference/operator-approval-readiness-2026-07-09.json` and
+  `make operator-approval-readiness` verify that controlled rollout remains
+  blocked until operator acceptance, regulator submission, manuals/training,
+  parallel-run evidence and go/no-go evidence are accepted.
+
+Phase 20 adds an operator-approval gate only. It does not record acceptance,
+authorize production dispatch use or remove any non-operational limitation.
+
 ## Architecture Changes Required
 
 - Add an `ops_mode` boundary: `simulator`, `ops_candidate`,

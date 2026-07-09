@@ -1,0 +1,40 @@
+{
+  "baseline": "operator-approval-readiness-2026-07-09",
+  "contract_version": "1.0.0",
+  "gates": [
+    {
+      "detail": "No named operator has formally accepted the intended use, limitations, manuals revision and approval path.",
+      "id": "operator_acceptance",
+      "status": "missing",
+      "title": "Operator acceptance not recorded"
+    },
+    {
+      "detail": "The submission package, compliance mapping and authority interaction record are not approved for operational use.",
+      "id": "regulator_submission_pack",
+      "status": "missing",
+      "title": "Regulator or principal-inspector pack missing"
+    },
+    {
+      "detail": "Operator manuals, dispatcher/pilot training, backup procedures and compliance monitoring are not accepted.",
+      "id": "manuals_training",
+      "status": "missing",
+      "title": "Manuals and training not accepted"
+    },
+    {
+      "detail": "The system has not completed a documented parallel run against the incumbent dispatch process.",
+      "id": "parallel_run_campaign",
+      "status": "missing",
+      "title": "Parallel-run campaign incomplete"
+    },
+    {
+      "detail": "Open limitations, acceptance report, production tag and operator go/no-go decision are not recorded.",
+      "id": "go_no_go_decision",
+      "status": "missing",
+      "title": "Go/no-go decision not recorded"
+    }
+  ],
+  "operational_use_enabled": false,
+  "operator_approval_enabled": false,
+  "ops_mode": "simulator",
+  "rollout_state": "blocked"
+}

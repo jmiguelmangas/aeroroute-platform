@@ -3001,6 +3001,15 @@ Implementation update (9 July 2026): Phase 19 adds assurance-readiness gates.
 traceability, IV&V, release/data-cycle control, audit/SLO observability,
 security/incident response and fallback procedures are accepted.
 
+Implementation update (9 July 2026): Phase 20 adds operator-approval rollout
+gates. `aeroroute-contracts` defines `operator-approval-readiness/v1`;
+`aeroroute-api` exposes `GET /api/v1/operator-approval-readiness`; and
+`aeroroute-platform` validates
+`reference/operator-approval-readiness-2026-07-09.json` with
+`make operator-approval-readiness`. Controlled rollout remains blocked until
+operator acceptance, regulator submission, manuals/training, parallel-run
+evidence and go/no-go evidence are accepted for a specific operator build.
+
 ---
 
 # Part III — Testing Strategy

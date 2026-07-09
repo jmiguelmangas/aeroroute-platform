@@ -144,12 +144,13 @@
     {
       "blocking_for_operational_use": true,
       "id": "OPS-REQ-006",
-      "owner_repo": "aeroroute-web",
+      "owner_repo": "aeroroute-platform",
       "phase": 20,
-      "status": "planned",
+      "status": "implemented",
       "title": "Operator manuals, procedures, training and backup process are accepted before operational use.",
       "verification": [
-        "Approved operator build references accepted manual revision and training evidence."
+        "GET /api/v1/operator-approval-readiness returns operator_approval_enabled=false and ops_mode=simulator.",
+        "The 2026-07-09 operator approval baseline rejects rollout enablement."
       ]
     }
   ]
