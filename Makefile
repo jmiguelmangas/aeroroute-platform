@@ -1,4 +1,4 @@
-.PHONY: bootstrap format lint typecheck test build check dev-up dev-down integration e2e release-verify route-coverage operational-readiness operational-data-sources verify-live performance-live phase14-release sbom
+.PHONY: bootstrap format lint typecheck test build check dev-up dev-down integration e2e release-verify route-coverage operational-readiness operational-data-sources icao-fpl-baseline verify-live performance-live phase14-release sbom
 
 bootstrap:
 	uv sync --all-groups
@@ -42,6 +42,9 @@ operational-readiness:
 operational-data-sources:
 	uv run python scripts/validate_operational_data_sources.py
 
+icao-fpl-baseline:
+	uv run python scripts/validate_icao_fpl_baseline.py
+
 verify-live:
 	uv run python scripts/verify_live_release.py
 
@@ -54,4 +57,4 @@ phase14-release:
 sbom:
 	./scripts/generate_sbom.sh
 
-check: lint typecheck test build release-verify route-coverage operational-readiness operational-data-sources phase14-release
+check: lint typecheck test build release-verify route-coverage operational-readiness operational-data-sources icao-fpl-baseline phase14-release

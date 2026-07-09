@@ -149,6 +149,21 @@ Exit gate:
   controlled operational error; no route is promoted as filed until accepted by
   the relevant filing path.
 
+Implementation update, 9 July 2026:
+
+- `aeroroute-contracts` publishes the `icao-fpl-validation/v1` schema.
+- `aeroroute-api` exposes `POST /api/v1/icao-fpl/validate` for a
+  non-transmitted ICAO FPL validation preview covering items 7, 8, 9, 10, 13,
+  15, 16, 18 and 19.
+- Filing remains disabled. The validator always returns `filing_enabled=false`
+  and includes blockers for missing filing gateway, missing NOTAM/RAD/ATC data
+  and absent operator aircraft-capability approval.
+- `reference/icao-fpl-validation-2026-07-09.json` and
+  `make icao-fpl-baseline` keep the filing baseline blocked.
+
+Phase 17 completes validation scaffolding only. It does not enable ICAO FPL
+submission, route filing, dispatcher release or ATC-facing output.
+
 ## Phase 18 — Operational Fuel, Performance And Dispatch
 
 Goal: replace simplified educational fuel with approved dispatch calculations.

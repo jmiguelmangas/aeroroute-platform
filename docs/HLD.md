@@ -2977,6 +2977,14 @@ defines `operational-data-source/v1`; `aeroroute-api` exposes
 and filing sources fail closed for operational modes; demo navdata, weather,
 airport and performance data remain simulator-only.
 
+Implementation update (9 July 2026): Phase 17 adds non-transmitted ICAO FPL
+validation scaffolding. `aeroroute-contracts` defines `icao-fpl-validation/v1`;
+`aeroroute-api` exposes `POST /api/v1/icao-fpl/validate`; and
+`aeroroute-platform` validates `reference/icao-fpl-validation-2026-07-09.json`
+with `make icao-fpl-baseline`. Filing remains disabled and blocked by missing
+filing gateway, NOTAM/RAD/ATC restrictions and operator aircraft-capability
+approval.
+
 ---
 
 # Part III — Testing Strategy

@@ -107,6 +107,18 @@
     },
     {
       "blocking_for_operational_use": true,
+      "id": "OPS-REQ-008",
+      "owner_repo": "aeroroute-api",
+      "phase": 17,
+      "status": "implemented",
+      "title": "ICAO FPL validation is available only as a non-transmitted blocked preview.",
+      "verification": [
+        "POST /api/v1/icao-fpl/validate returns filing_enabled=false and validates items 7, 8, 9, 10, 13, 15, 16, 18 and 19.",
+        "The 2026-07-09 ICAO FPL baseline rejects filing enablement."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
       "id": "OPS-REQ-005",
       "owner_repo": "aeroroute-platform",
       "phase": 19,
