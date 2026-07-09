@@ -2729,6 +2729,26 @@ The actual values are benchmark inputs, not promises; adjust them to measured un
 - fail promotion when any critical gate regresses;
 - confirm no confidential source marker or forbidden dataset path is present.
 
+#### Implementation status
+
+Implementation status (9 July 2026): deferred, not attempted, by a
+documented decision rather than an oversight. The prompt-only Gemma 3 4B
+baseline scored 100% pass rate (23/23) on a 24-case evaluation corpus
+spanning schema validity, numeric fidelity, and operational-claim safety;
+neither Mistral 7B Instruct v0.3 nor Qwen3-8B (substituted for the
+vision-language "Qwen3.5-9B" named here, which is not a text-only `mlx_lm`
+model under that identifier) beat it in a prompt-only bake-off. Gemma 3 12B
+was not attempted: this workspace's Mac has 16 GB unified memory, below
+the SS22 gate of >=24 GB for inference and >=32 GB for QLoRA. With no base
+model beating the 4B baseline and no measured quality gap for an adapter to
+close, none of the SS31.1 work items beyond dataset-record shape and
+grouped splitting (already implemented) have been built. See
+`aeroroute-mlx-training/docs/QLORA_DECISION_2026-07-09.md`,
+`aeroroute-mlx-training/docs/COMPATIBILITY_12B_2026-07-09.md`,
+`aeroroute-mlx-training/docs/BAKEOFF_2026-07-09.md`, and
+`aeroroute-mlx/docs/QUALITY_CORPUS_2026-07-09.md` for full evidence and the
+conditions that would revisit this.
+
 #### Codex task prompt
 
 ```text
