@@ -2949,6 +2949,7 @@ Post-MVP phases:
 | 18 | Operational fuel, performance and dispatch | Fuel/performance results match approved independent benchmark cases for the target fleet and policy. |
 | 19 | Assurance, security and operations | Traceability, IV&V, release control, audit logs, SLOs, incident response and fallback procedures are in force. |
 | 20 | Operator approval and rollout | Operator/regulator acceptance is recorded for a specific build, fleet, data cycle and manuals revision. |
+| 21 | Aircraft capability and filing approval | ICAO FPL equipment declarations are checked against aircraft capability and operator approval records. |
 
 Until these phases pass for a specific operator, all APIs, UI screens, exports
 and release notes must preserve the non-operational, non-ICAO-fileable boundary.
@@ -3009,6 +3010,14 @@ gates. `aeroroute-contracts` defines `operator-approval-readiness/v1`;
 `make operator-approval-readiness`. Controlled rollout remains blocked until
 operator acceptance, regulator submission, manuals/training, parallel-run
 evidence and go/no-go evidence are accepted for a specific operator build.
+
+Implementation update (9 July 2026): Phase 21 makes aircraft capability
+approval explicit in ICAO FPL validation. `POST /api/v1/icao-fpl/validate`
+returns an `aircraft_capability` profile with requested equipment, unsupported
+equipment and the simulator baseline
+`aircraft-capability-simulator-2026-07-09`. The platform baseline records that
+operator aircraft-capability approval is still missing, so filing remains
+disabled even when ICAO item syntax is valid.
 
 ---
 

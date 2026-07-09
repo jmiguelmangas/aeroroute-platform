@@ -27,3 +27,18 @@ def test_icao_fpl_baseline_rejects_enabled_filing(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="must not enable filing"):
         validate_icao_fpl_baseline(target)
+
+
+def test_icao_fpl_baseline_rejects_operator_aircraft_approval(
+    tmp_path: Path,
+) -> None:
+    target = tmp_path / "icao-fpl.json"
+    target.write_text(
+        BASELINE.read_text().replace(
+            '"operator_aircraft_capability_approval": "missing"',
+            '"operator_aircraft_capability_approval": "accepted"',
+        )
+    )
+
+    with pytest.raises(ValueError, match="approval must be missing"):
+        validate_icao_fpl_baseline(target)

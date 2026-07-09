@@ -3,6 +3,16 @@
   "contract_version": "1.0.0",
   "filing_enabled": false,
   "generated_at": "2026-07-09T00:00:00Z",
+  "aircraft_capability_baseline": "aircraft-capability-simulator-2026-07-09",
+  "operator_aircraft_capability_approval": "missing",
+  "supported_aircraft": [
+    "A320",
+    "A359",
+    "A388",
+    "B738",
+    "B77W",
+    "B788"
+  ],
   "operational_use_enabled": false,
   "required_items": [
     "7",

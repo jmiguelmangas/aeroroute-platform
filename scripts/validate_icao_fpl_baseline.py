@@ -11,6 +11,7 @@ REQUIRED_BLOCKERS = {
     "notam_rad_atc_restrictions_missing",
     "operator_aircraft_capability_not_accepted",
 }
+SUPPORTED_AIRCRAFT = {"A320", "A359", "A388", "B738", "B77W", "B788"}
 
 
 def validate_icao_fpl_baseline(path: Path) -> dict[str, Any]:
@@ -27,6 +28,17 @@ def validate_icao_fpl_baseline(path: Path) -> dict[str, Any]:
         raise ValueError("ICAO FPL required item coverage is incomplete")
     if set(baseline.get("required_blockers", [])) != REQUIRED_BLOCKERS:
         raise ValueError("ICAO FPL operational blockers are incomplete")
+    if (
+        baseline.get("aircraft_capability_baseline")
+        != "aircraft-capability-simulator-2026-07-09"
+    ):
+        raise ValueError("ICAO FPL aircraft capability baseline mismatch")
+    if baseline.get("operator_aircraft_capability_approval") != "missing":
+        raise ValueError(
+            "operator aircraft capability approval must be missing"
+        )
+    if set(baseline.get("supported_aircraft", [])) != SUPPORTED_AIRCRAFT:
+        raise ValueError("ICAO FPL supported aircraft baseline mismatch")
     if baseline.get("status") != "blocked":
         raise ValueError("ICAO FPL baseline must remain blocked")
     return baseline

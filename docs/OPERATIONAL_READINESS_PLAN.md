@@ -267,6 +267,32 @@ Implementation update, 9 July 2026:
 Phase 20 adds an operator-approval gate only. It does not record acceptance,
 authorize production dispatch use or remove any non-operational limitation.
 
+## Phase 21 — Aircraft Capability And Filing Approval
+
+Goal: ensure ICAO FPL equipment and capability declarations cannot exceed the
+simulator aircraft baseline or a future operator-approved aircraft record.
+
+Deliverables:
+
+- explicit aircraft capability profile in ICAO FPL validation responses;
+- simulator capability baseline tied to supported aircraft and allowed
+  equipment codes;
+- operator aircraft-capability approval state, currently `missing`;
+- tests proving unsupported equipment invalidates Item 10 and filing remains
+  blocked.
+
+Implementation update, 9 July 2026:
+
+- `POST /api/v1/icao-fpl/validate` now returns `aircraft_capability` with
+  baseline, requested equipment, unsupported equipment and approval blockers.
+- `icao-fpl-validation/v1` requires the aircraft capability profile.
+- `reference/icao-fpl-validation-2026-07-09.json` records
+  `aircraft-capability-simulator-2026-07-09`, supported aircraft and missing
+  operator aircraft-capability approval.
+
+Phase 21 does not approve aircraft capabilities. It makes the missing approval
+machine-readable and keeps filing disabled.
+
 ## Architecture Changes Required
 
 - Add an `ops_mode` boundary: `simulator`, `ops_candidate`,
