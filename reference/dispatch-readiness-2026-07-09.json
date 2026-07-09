@@ -1,0 +1,35 @@
+{
+  "baseline": "dispatch-readiness-2026-07-09",
+  "contract_version": "1.0.0",
+  "dispatch_release_enabled": false,
+  "generated_at": "2026-07-09T00:00:00Z",
+  "gates": [
+    {
+      "id": "approved_performance_data",
+      "status": "missing",
+      "title": "Approved aircraft performance data"
+    },
+    {
+      "id": "fuel_policy_acceptance",
+      "status": "missing",
+      "title": "Operational fuel policy acceptance"
+    },
+    {
+      "id": "runway_weight_balance_limits",
+      "status": "missing",
+      "title": "Runway, weight and balance limits"
+    },
+    {
+      "id": "minima_alternate_suitability",
+      "status": "missing",
+      "title": "Weather minima and alternate suitability"
+    },
+    {
+      "id": "dispatcher_signoff",
+      "status": "missing",
+      "title": "Dispatcher/pilot release workflow"
+    }
+  ],
+  "operational_use_enabled": false,
+  "status": "blocked"
+}

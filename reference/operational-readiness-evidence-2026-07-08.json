@@ -119,6 +119,18 @@
     },
     {
       "blocking_for_operational_use": true,
+      "id": "OPS-REQ-009",
+      "owner_repo": "aeroroute-api",
+      "phase": 18,
+      "status": "implemented",
+      "title": "Dispatch release is blocked until approved fuel, performance and signoff evidence exist.",
+      "verification": [
+        "GET /api/v1/dispatch-readiness returns dispatch_release_enabled=false.",
+        "The 2026-07-09 dispatch baseline rejects release enablement."
+      ]
+    },
+    {
+      "blocking_for_operational_use": true,
       "id": "OPS-REQ-005",
       "owner_repo": "aeroroute-platform",
       "phase": 19,

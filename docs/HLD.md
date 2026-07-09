@@ -2985,6 +2985,14 @@ with `make icao-fpl-baseline`. Filing remains disabled and blocked by missing
 filing gateway, NOTAM/RAD/ATC restrictions and operator aircraft-capability
 approval.
 
+Implementation update (9 July 2026): Phase 18 adds dispatch-readiness gates.
+`aeroroute-contracts` defines `dispatch-readiness/v1`; `aeroroute-api` exposes
+`GET /api/v1/dispatch-readiness`; and `aeroroute-platform` validates
+`reference/dispatch-readiness-2026-07-09.json` with `make dispatch-readiness`.
+Dispatch release remains disabled until approved performance data, fuel policy,
+runway/weight/balance limits, minima/alternate suitability and signoff evidence
+exist.
+
 ---
 
 # Part III — Testing Strategy

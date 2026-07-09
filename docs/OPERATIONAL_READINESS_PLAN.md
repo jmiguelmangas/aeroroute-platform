@@ -185,6 +185,19 @@ Exit gate:
 - OFP totals reconcile mathematically and match independent benchmark cases for
   every supported fleet/route class.
 
+Implementation update, 9 July 2026:
+
+- `aeroroute-contracts` publishes the `dispatch-readiness/v1` schema.
+- `aeroroute-api` exposes `GET /api/v1/dispatch-readiness`, which keeps
+  `dispatch_release_enabled=false`.
+- `reference/dispatch-readiness-2026-07-09.json` and
+  `make dispatch-readiness` verify that dispatch release remains blocked until
+  approved aircraft performance data, fuel policy, runway/weight/balance
+  limits, minima/alternate suitability and dispatcher/pilot signoff exist.
+
+Phase 18 completes the dispatch-readiness gate only. The current fuel plan
+remains educational and non-operational.
+
 ## Phase 19 — Assurance, Security And Operations
 
 Goal: make the system operable under controlled change, audit and incident
