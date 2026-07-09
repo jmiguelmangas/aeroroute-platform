@@ -7,7 +7,7 @@ from scripts.validate_route_coverage import validate_route_coverage
 
 def test_supported_route_coverage_report_is_complete() -> None:
     report = validate_route_coverage(
-        Path("reference/supported-route-coverage-2026-07-08.json")
+        Path("reference/supported-route-coverage-2026-07-09.json")
     )
 
     assert report["summary"]["complete_pairs"] == 1
@@ -18,7 +18,7 @@ def test_supported_route_coverage_report_is_complete() -> None:
 
 
 def test_route_coverage_rejects_missing_problem_modes(tmp_path: Path) -> None:
-    source = Path("reference/supported-route-coverage-2026-07-08.json")
+    source = Path("reference/supported-route-coverage-2026-07-09.json")
     target = tmp_path / "coverage.json"
     text = source.read_text()
     target.write_text(

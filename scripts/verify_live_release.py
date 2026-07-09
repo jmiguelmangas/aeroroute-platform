@@ -8,7 +8,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "reference" / "flight-plan-scenarios-2026-06-29.json"
+MANIFEST = ROOT / "reference" / "flight-plan-scenarios-2026-07-09.json"
 
 
 def validate_scenario(
@@ -58,7 +58,7 @@ def verify(base_url: str) -> None:
     for index, scenario in enumerate(manifest["scenarios"], start=1):
         payload = {
             **scenario["request"],
-            "departure_time_utc": f"2026-06-30T{10 + index:02d}:00:00Z",
+            "departure_time_utc": f"2026-07-09T{10 + index:02d}:00:00Z",
             "profile": "minimum_fuel",
             "extra_fuel_kg": 1_000,
             "callsign": f"VRF{index:03d}",

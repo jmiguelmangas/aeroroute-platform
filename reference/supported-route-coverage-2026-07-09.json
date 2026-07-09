@@ -1,0 +1,121 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-07-09T18:00:00Z",
+  "scope": "mvp-supported-catalogue",
+  "airac_cycle": "2607",
+  "airport_bundle_sha256": "cad7429edca95210fdfad49b4f1b417c6844ebcab33456888ce7a1b799ea2bd7",
+  "airport_count": 75,
+  "operationally_approved": false,
+  "coverage_policy": {
+    "minimum_terminal_coverage": "origin runway plus SID and destination runway plus STAR",
+    "route_outcome": "complete or explicit degraded DCT; never invented identifiers",
+    "preflight_endpoint": "GET /api/v1/airports/route-support",
+    "airac_loading": "bounded on-demand with six-hour local cache",
+    "unsupported_outcome": "stable actionable problem response"
+  },
+  "summary": {
+    "evaluated_reference_pairs": 4,
+    "complete_pairs": 1,
+    "degraded_pairs": 3,
+    "unsupported_pairs": 0,
+    "stable_problem_modes": 3
+  },
+  "reference_pairs": [
+    {
+      "name": "MAD-JFK",
+      "origin_icao": "LEMD",
+      "destination_icao": "KJFK",
+      "preflight_status": "supported",
+      "route_status": "degraded",
+      "terminal_coverage": {
+        "departure_runway": "36L",
+        "sid": "BARD3N",
+        "arrival_runway": "13R",
+        "star": "PAWLN1"
+      },
+      "degradation": {
+        "present": true,
+        "reason": "oceanic and terminal-to-enroute joins remain explicit DCT where source graph connectivity is incomplete"
+      },
+      "alternate": "KBOS",
+      "minimum_diversions": 2
+    },
+    {
+      "name": "JFK-MAD",
+      "origin_icao": "KJFK",
+      "destination_icao": "LEMD",
+      "preflight_status": "supported",
+      "route_status": "degraded",
+      "terminal_coverage": {
+        "departure_runway": "13R",
+        "sid": "DEEZZ6",
+        "arrival_runway": "18R",
+        "star": "ZMR5A"
+      },
+      "degradation": {
+        "present": true,
+        "reason": "oceanic and terminal-to-enroute joins remain explicit DCT where source graph connectivity is incomplete"
+      },
+      "alternate": "LEBL",
+      "minimum_diversions": 3
+    },
+    {
+      "name": "DXB-MAD",
+      "origin_icao": "OMDB",
+      "destination_icao": "LEMD",
+      "preflight_status": "supported",
+      "route_status": "complete",
+      "terminal_coverage": {
+        "departure_runway": "12R",
+        "sid": "NABI3G",
+        "arrival_runway": "18R",
+        "star": "RIDA3A"
+      },
+      "degradation": {
+        "present": false,
+        "reason": null
+      },
+      "alternate": "LEBL",
+      "minimum_diversions": 3
+    },
+    {
+      "name": "NRT-SFO",
+      "origin_icao": "RJAA",
+      "destination_icao": "KSFO",
+      "preflight_status": "supported",
+      "route_status": "degraded",
+      "terminal_coverage": {
+        "departure_runway": "16R",
+        "sid": "GULBO2",
+        "arrival_runway": "10L",
+        "star": "STINS4"
+      },
+      "degradation": {
+        "present": true,
+        "reason": "transpacific airway graph gaps remain explicit DCT where source graph connectivity is incomplete"
+      },
+      "alternate": "KLAX",
+      "minimum_diversions": 1
+    }
+  ],
+  "stable_problem_modes": [
+    {
+      "code": "airport_not_supported",
+      "status": "unsupported",
+      "http_surface": "route-support response problem",
+      "action": "choose an airport present in the active immutable airport snapshot"
+    },
+    {
+      "code": "navigation_provider_unavailable",
+      "status": "unavailable",
+      "http_surface": "route-support response problem",
+      "action": "retry when AIRAC provider or local cache is available; no synthetic route is promoted as confirmed"
+    },
+    {
+      "code": "runway_procedure_coverage_missing",
+      "status": "unsupported",
+      "http_surface": "route-support response problem",
+      "action": "use a different airport/runway or import a cycle snapshot containing compatible terminal data"
+    }
+  ]
+}

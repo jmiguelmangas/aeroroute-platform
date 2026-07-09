@@ -12,9 +12,9 @@ from scripts.validate_route_coverage import validate_route_coverage  # noqa: E40
 
 
 REFERENCE_SCENARIOS = (
-    ROOT / "reference" / "flight-plan-scenarios-2026-06-29.json"
+    ROOT / "reference" / "flight-plan-scenarios-2026-07-09.json"
 )
-ROUTE_COVERAGE = ROOT / "reference" / "supported-route-coverage-2026-07-08.json"
+ROUTE_COVERAGE = ROOT / "reference" / "supported-route-coverage-2026-07-09.json"
 
 REQUIRED_SCENARIOS = {"MAD-JFK", "JFK-MAD", "DXB-MAD", "NRT-SFO"}
 REQUIRED_PROBLEM_CODES = {

@@ -6,7 +6,7 @@ def test_flight_plan_release_scenarios_are_complete_and_real() -> None:
     root = Path(__file__).resolve().parents[1]
     manifest = json.loads(
         (
-            root / "reference" / "flight-plan-scenarios-2026-06-29.json"
+            root / "reference" / "flight-plan-scenarios-2026-07-09.json"
         ).read_text()
     )
     scenarios = manifest["scenarios"]

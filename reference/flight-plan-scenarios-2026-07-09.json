@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "airac_cycle": "2607",
+  "airport_bundle_sha256": "cad7429edca95210fdfad49b4f1b417c6844ebcab33456888ce7a1b799ea2bd7",
+  "operationally_approved": false,
+  "scenarios": [
+    {
+      "name": "MAD-JFK",
+      "request": {"origin_icao": "LEMD", "destination_icao": "KJFK", "aircraft_type": "B77W", "payload_mass_kg": 42000},
+      "expected": {"departure_runway": "36L", "sid": "BARD3N", "arrival_runway": "13R", "star": "PAWLN1", "alternate": "KBOS", "minimum_diversions": 2, "route_status": "degraded"}
+    },
+    {
+      "name": "JFK-MAD",
+      "request": {"origin_icao": "KJFK", "destination_icao": "LEMD", "aircraft_type": "B788", "payload_mass_kg": 30000},
+      "expected": {"departure_runway": "13R", "sid": "DEEZZ6", "arrival_runway": "18R", "star": "ZMR5A", "alternate": "LEBL", "minimum_diversions": 3, "route_status": "degraded"}
+    },
+    {
+      "name": "DXB-MAD",
+      "request": {"origin_icao": "OMDB", "destination_icao": "LEMD", "aircraft_type": "A359", "payload_mass_kg": 38000},
+      "expected": {"departure_runway": "12R", "sid": "NABI3G", "arrival_runway": "18R", "star": "RIDA3A", "alternate": "LEBL", "minimum_diversions": 3, "route_status": "complete"}
+    },
+    {
+      "name": "NRT-SFO",
+      "request": {"origin_icao": "RJAA", "destination_icao": "KSFO", "aircraft_type": "B788", "payload_mass_kg": 8000},
+      "expected": {"departure_runway": "16R", "sid": "GULBO2", "arrival_runway": "10L", "star": "STINS4", "alternate": "KLAX", "minimum_diversions": 1, "route_status": "degraded"}
+    }
+  ]
+}

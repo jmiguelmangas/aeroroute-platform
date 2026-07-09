@@ -77,7 +77,7 @@ def validate_route_coverage(path: Path) -> dict[str, Any]:
 def main() -> None:
     root = Path(__file__).resolve().parents[1]
     validate_route_coverage(
-        root / "reference" / "supported-route-coverage-2026-07-08.json"
+        root / "reference" / "supported-route-coverage-2026-07-09.json"
     )
 
 
