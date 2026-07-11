@@ -2098,7 +2098,7 @@ git clone git@github.com:<org>/aeroroute-platform.git
 cd aeroroute-platform
 cp .env.example .env
 ./scripts/bootstrap-workspace.sh --mode development
-./scripts/dev-up.sh --profile core-linux
+make dev-up
 ```
 
 Expected workspace outside Git ownership:

@@ -96,15 +96,41 @@ here is downstream of it.
 | [`aeroroute-contracts`](https://github.com/jmiguelmangas/aeroroute-contracts) | Cross-language OpenAPI/JSON Schema contracts |
 | `aeroroute-platform` (this repo) | Local composition, release manifest, integration tests, docs |
 
+## Installing the full workspace
+
+This repo owns the polyrepo bootstrap. Start here even if you ultimately
+want to work in a sibling repo:
+
+```bash
+git clone https://github.com/jmiguelmangas/aeroroute-platform.git
+cd aeroroute-platform
+cp .env.example .env
+./scripts/bootstrap-workspace.sh --mode development
+```
+
+`bootstrap-workspace.sh` clones the other 7 repos as siblings (next to, not
+inside, `aeroroute-platform`) and, in `--mode development`, runs each one's
+own `make bootstrap` (`uv sync` for Python repos, `pnpm install` for
+`aeroroute-web`). Re-running it later is safe — it skips any sibling that's
+already a git checkout. Override `AEROROUTE_WORKSPACE` to clone somewhere
+other than the parent directory, and set `AEROROUTE_GIT_PROTOCOL=ssh` to
+clone over SSH instead of HTTPS.
+
 ## Running it locally
 
 ```bash
-make bootstrap   # once
 make dev-up      # PostgreSQL + PostGIS via Docker Compose
 # in aeroroute-api: uv run alembic upgrade head && uv run aeroroute import-airports --bundle ...
 make check       # repository-local validation
 make verify-live # reproduce the frozen reference routes against the live stack
 ```
+
+`./scripts/verify-local-stack.sh` is the fastest way to confirm the backend
+works end-to-end: it brings up PostGIS, migrates, imports a fixture airport
+bundle, starts the MLX explanation service, runs one real optimization
+(`LEMD → KJFK`), and asserts the explanation comes back — the same check
+worth re-running after any change to the workspace layout (e.g. moving this
+checkout to another disk/volume).
 
 `make integration`, `make e2e`, and `make release-verify` compose and verify
 the released sibling artifacts together. Native MLX explanations require
