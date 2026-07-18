@@ -44,6 +44,9 @@ the result.
 
 ## Screenshots
 
+`aeroroute-web` uses a sidebar-navigated UI (search, results, flight plan,
+saved routes, aircraft reference) with a light/dark theme toggle.
+
 | Search & live route map | Comparison, explanation & safety gates |
 | --- | --- |
 | ![Search form and route map](assets/screenshots/dashboard-mad-jfk.png) | ![Comparison table, deterministic explanation and operational-readiness panel](assets/screenshots/results-comparison.png) |
